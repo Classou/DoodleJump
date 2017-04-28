@@ -4,7 +4,7 @@ using namespace std;
 #include "marche.h"
 
 
-
+const int dt=0.1;//temps infinitésimal
 //======================================
 int main(){
     openWindow(width_window,height_window);
