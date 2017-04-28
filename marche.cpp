@@ -32,8 +32,7 @@ void marche::affiche(){
 
 //Descente de la marche de 1 pixel
 void marche::defile(){
-    pos.y()+1;
-
+    pos.y()++;
 }
 
 

@@ -27,12 +27,12 @@ int main(){
             Marches[i].defile();
             Marches[i].affiche();
         }
-        if(Marches[Marches.size()].posCoin().y()+height_plat>=height_window){
+        if(Marches.back().posCoin().y()+height_plat>=height_window){
             Marches.pop_back();
         }
         else{
-            Marches[Marches.size()].defile();
-            Marches[Marches.size()].affiche();
+            Marches.back().defile();
+            Marches.back().affiche();
         }
         milliSleep(100);
     }
