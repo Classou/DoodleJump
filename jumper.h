@@ -9,6 +9,7 @@ using namespace Imagine;
 #include <cassert>
 #include"marche.h"
 using namespace std;
+#include "marche.h"
 const float dt=0.1;
 class jumper{
     int x;//position du sauteur
@@ -16,10 +17,12 @@ class jumper{
     float m; //masse du sauteur
     IntPoint2 v; //vitesse du sauteur
     IntPoint2 a; //accélération du sauteur
-    public :
-        void accelere();
-        void bouge();
-        void test_rebond(std :: vector<marche> Marches);
+public :
+    void accelere();
+    void bouge();
+    bool perdu();
+    void test_rebond(std :: vector<marche> Marches);
+
 };
 
 

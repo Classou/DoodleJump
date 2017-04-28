@@ -12,5 +12,5 @@ void jumper :: bouge(){
     x+=v.x()*dt/width_window;
 }
 void jumper :: accelere(){
-
+    
 }
