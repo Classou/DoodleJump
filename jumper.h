@@ -15,10 +15,11 @@ class jumper{
     float m; //masse du sauteur
     IntPoint2 v; //vitesse du sauteur
     IntPoint2 a; //accélération du sauteur
-    public :
-        void accelere();
-        void bouge();
-        void test_rebond(marche []);
+public :
+    void accelere();
+    void bouge();
+    void test_rebond(marche []);
+    bool perdu();
 };
 
 
