@@ -1,11 +1,13 @@
 #include <cmath>
 #include <ctime>
 using namespace std;
-#include "marche.h"
+#include "jumper.h"
 
 
 
 //======================================
-void bouge(){
-    v=a.
+void jumper :: bouge(){
+    v+=dt*a;
+    y+=v.y()*dt;
+    x+=v.x()*dt;
 }
