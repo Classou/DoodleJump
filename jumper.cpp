@@ -5,7 +5,3 @@ using namespace std;
 
 
 
-//======================================
-void bouge(){
-    v=a.
-}
