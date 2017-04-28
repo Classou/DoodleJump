@@ -11,18 +11,16 @@ int main(){
 
 
     //Création d'une liste de marches
-    int nb_marches=0;
-    marche* marches_toutes=new marche[100];
+    vector<marche> marches_toutes;
     for(int i=0;i<5;i++){
         marche M(width_plat,height_plat,col);
-        nb_marches+=1;
-        marches_toutes[i]=M;
+        marches_toutes.push_back(M);
     }
-    for(int i=0;i<nb_marches;i++){
+    for(int i=0;i<marches_toutes.size();i++){
         marches_toutes[i].affiche();
         click();
     }
-
+    IntPoint2 test;
 
     return 0;
 }
