@@ -6,7 +6,7 @@ using namespace std;
 #include<list>
 
 
-
+const int dt=0.1;//temps infinitésimal
 //======================================
 int main(){
     openWindow(width_window,height_window);
@@ -33,8 +33,6 @@ int main(){
             Marches[Marches.size()].defile();
             Marches[Marches.size()].affiche();
         }
-
-    }
 
 
     return 0;
