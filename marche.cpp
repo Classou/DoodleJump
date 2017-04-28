@@ -38,14 +38,8 @@ void marche::affiche(){
 }
 
 //Descente de la marche de 1 pixel
-marche marche::defile(){
-    marche nv;
-    IntPoint2 p(pos.x(),pos.y()+1);
-    nv.pos=p;
-    nv.C=C;
-    nv.w=w;
-    nv.h=h;
-    return nv;
+void marche::defile(){
+    pos.y()++;
 }
 
 
