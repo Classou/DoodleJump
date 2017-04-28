@@ -8,6 +8,7 @@ using namespace Imagine;
 #include <iostream>
 #include <cassert>
 using namespace std;
+#include "marche.h"
 const float dt=0.1;
 class jumper{
     int x;//position du sauteur

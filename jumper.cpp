@@ -8,8 +8,9 @@ using namespace std;
 //======================================
 void jumper :: bouge(){
     v+=dt*a;
-    if(x<width_window)
-    y+=v.y()*dt;
-    x+=v.x()*dt;
+    y+=(v.y()*dt)/width_window;
+    x+=v.x()*dt/width_window;
+}
+void jumper :: accelere(){
 
 }
