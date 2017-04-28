@@ -7,6 +7,7 @@ using namespace Imagine;
 #include <list>
 #include <iostream>
 #include <cassert>
+#include"marche.h"
 using namespace std;
 #include "marche.h"
 const float dt=0.1;
@@ -19,8 +20,9 @@ class jumper{
 public :
     void accelere();
     void bouge();
-    void test_rebond(marche []);
     bool perdu();
+    void test_rebond(std :: vector<marche> Marches);
+
 };
 
 
