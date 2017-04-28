@@ -12,7 +12,7 @@ using namespace std;
 #include "marche.h"
 const float dt=0.1;
 class jumper{
-    int x;//position du sauteur
+    int x; //position du sauteur
     int y; //altitude du sauteur par rapport au milieu de l écran
     float m; //masse du sauteur
     IntPoint2 v; //vitesse du sauteur
@@ -22,8 +22,7 @@ public :
     void bouge();
     bool perdu();
     void test_rebond(std :: vector<marche> Marches);
-
 };
 
 
-#endif // JUMPER_H
+#endif //JUMPER_H
