@@ -30,6 +30,13 @@ void marche::affiche(){
     fillCircle(pos.x()+width_plat-height_plat/2,pos.y()+height_plat/2,height_plat/2,C);
 }
 
+//Effacement de la marche
+void marche::affiche(){
+    fillRect(pos.x()+height_plat/2,pos.y(),w-height_plat,h+1,WHITE);
+    fillCircle(pos.x()+height_plat/2,pos.y()+height_plat/2,height_plat/2,WHITE);
+    fillCircle(pos.x()+width_plat-height_plat/2,pos.y()+height_plat/2,height_plat/2,WHITE);
+}
+
 //Descente de la marche de 1 pixel
 marche marche::defile(){
     marche nv;

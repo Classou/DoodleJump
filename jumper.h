@@ -10,9 +10,8 @@ using namespace Imagine;
 using namespace std;
 const float dt=0.1;
 class jumper{
-<<<<<<< HEAD
     int x; //position du sauteur
-    int z; //altitude du sauteur par rapport au milieu de l écran
+    int y; //altitude du sauteur par rapport au milieu de l écran
     float m; //masse du sauteur
     vector v; //vitesse du sauteur
     float a; //accélération du sauteur
@@ -20,6 +19,7 @@ public:
     void accelere();
     void bouge();
     void test_rebond(marche [])
+    bool perdu();
 };
 
 
