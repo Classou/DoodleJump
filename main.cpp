@@ -2,13 +2,17 @@
 #include <ctime>
 using namespace std;
 #include "marche.h"
+#include "jumper.h"
 #include <iostream>
 #include<vector>
 
 
-const int dt=0.1;//temps infinitésimal
+
 //======================================
 int main(){
+    //initialisation bonhomme
+    jumper bonhomme;
+
     openWindow(width_window,height_window);
 
     std :: vector<marche> Marches;
@@ -34,6 +38,8 @@ int main(){
             Marches.back().defile();
             Marches.back().affiche();
         }
+        // Gestion du Jumper
+        bonhomme.accelere();
         milliSleep(100);
     }
 

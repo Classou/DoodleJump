@@ -18,6 +18,13 @@ class jumper{
     IntPoint2 v; //vitesse du sauteur
     IntPoint2 a; //accélération du sauteur
 public :
+    jumper(){
+        x=width_window/2;
+        y=height_window/2;
+        m=1;
+        v=0;
+        a=0;
+    }
     void accelere();
     void bouge();
     bool perdu();
