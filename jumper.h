@@ -29,7 +29,7 @@ public :
     void bouge();
     bool perdu();
     void test_rebond(std :: vector<marche> Marches);
+    void affiche();
+    void efface();
 };
-void affiche(jumper);
-
 #endif //JUMPER_H

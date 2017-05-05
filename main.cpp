@@ -51,7 +51,12 @@ int main(){
 
         // Gestion du Jumper
         bonhomme.accelere();
-        milliSleep(10);
+
+        bonhomme.efface();
+        bonhomme.bouge();
+        bonhomme.affiche();
+        milliSleep(100);
+
     }
 
 

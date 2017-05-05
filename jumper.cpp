@@ -42,4 +42,9 @@ bool jumper::perdu(){
         return true;
 }
 
-void affiche(jumper);
+void jumper::affiche(){
+    fillRect(x,y,3,3,BLUE);
+}
+void jumper::efface(){
+    fillRect(x,y,3,3,WHITE);
+}
