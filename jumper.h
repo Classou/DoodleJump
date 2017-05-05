@@ -30,6 +30,6 @@ public :
     bool perdu();
     void test_rebond(std :: vector<marche> Marches);
 };
-
+void affiche(jumper);
 
 #endif //JUMPER_H

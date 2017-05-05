@@ -41,3 +41,5 @@ bool jumper::perdu(){
     if(y < 0)
         return true;
 }
+
+void affiche(jumper);
