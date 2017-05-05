@@ -40,6 +40,9 @@ int main(){
         }
         // Gestion du Jumper
         bonhomme.accelere();
+        bonhomme.efface();
+        bonhomme.bouge();
+        bonhomme.affiche();
         milliSleep(100);
     }
 
