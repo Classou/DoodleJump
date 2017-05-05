@@ -2,7 +2,6 @@
 #include <ctime>
 using namespace std;
 #include "jumper.h"
-#include "marche.h"
 
 
 
@@ -19,32 +18,56 @@ int Clavier() {
     return 0;
 }
 //======================================
-void jumper :: bouge(){
-    v+=dt*a;
-    y+=(v.y()*dt)/width_window;
-    x+=v.x()*dt/width_window;
-}
 
-void jumper :: accelere(){
+
+void jumper::bougex(){// bouge horizontalement
     int k=Clavier();
-    if (k==16777234){
-        v=2;
+    if (k==KEY_LEFT){
+        vx=-VX;
     }
-    else if (k==16777236){
-        v=-2;
+    if(k==KEY_RIGHT){
+        vx=VX;
     }
-    a=(-m*9.81)/m;
-
+    if(k==0){// demander a Monasse comment on fait pour gerer mieux les appuie long pour les touches
+        vx=0;
+    }
+    x+=int(vx*dt);
+}
+void jumper::bougey(){
+    y=y+vy*dt;
 }
 
-bool jumper::perdu(){
-    if(y < 0)
+
+void jumper :: accelere(){// acceleration verticale
+    vy=vy+G*dt;
+}
+
+bool jumper::ascention(){
+    return (vy<0);
+}
+
+bool jumper::hautducadre(){
+    return (y+vy*dt<hauteurmax);
+}
+
+bool jumper::pasperdu(){
+    if(y+vy*dt < height_window)
         return true;
+    else
+        return false;
+}
+
+float jumper:: vitesse(){
+    return vy;
+}
+
+void jumper::putposverti(int posy){
+    y=posy;
 }
 
 void jumper::affiche(){
-    fillRect(x,y,3,3,BLUE);
+    fillRect(x,y,10,10,BLUE);
 }
 void jumper::efface(){
-    fillRect(x,y,3,3,WHITE);
+    fillRect(x,y,10,10,WHITE);
 }
