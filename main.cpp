@@ -7,6 +7,30 @@ using namespace std;
 #include<vector>
 
 
+void GestionDesMarches(std::vector<marche> & Marches){
+    //Gère un vecteur de marches, qui en entrée n'est pas vide
+    if(((Marches[0]).posCoin()).y()>8* height_plat){
+        marche a(width_plat,height_plat,col);
+        Marches.insert(Marches.begin(),a);
+    }
+
+    for (int i=0;i<Marches.size()-1;i++){
+        Marches[i].efface();
+        Marches[i].defile();
+        Marches[i].affiche();
+
+    }
+    if(Marches.back().posCoin().y()+height_plat>=height_window){
+        Marches.back().efface();
+        Marches.pop_back();
+    }
+    else{
+        Marches.back().efface();
+        Marches.back().defile();
+        Marches.back().affiche();
+    }
+}
+
 
 //======================================
 int main(){
@@ -22,28 +46,17 @@ int main(){
 
     while(pas_perdu){
 
-        if(((Marches[0]).posCoin()).y()>4* height_plat){
-            marche a(width_plat,height_plat,col);
-            Marches.insert(Marches.begin(),a);
-        }
 
-        for (int i=0;i<Marches.size()-1;i++){
-            Marches[i].defile();
-            Marches[i].affiche();
-        }
-        if(Marches.back().posCoin().y()+height_plat>=height_window){
-            Marches.pop_back();
-        }
-        else{
-            Marches.back().defile();
-            Marches.back().affiche();
-        }
+        GestionDesMarches(Marches);
+
         // Gestion du Jumper
         bonhomme.accelere();
+
         bonhomme.efface();
         bonhomme.bouge();
         bonhomme.affiche();
         milliSleep(100);
+
     }
 
 
