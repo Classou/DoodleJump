@@ -3,8 +3,8 @@
 using namespace std;
 #include "jumper.h"
 #include "marche.h"
-
-
+#include <iostream>
+using namespace std;
 
 
 
@@ -21,6 +21,7 @@ int Clavier() {
 //======================================
 void jumper :: bouge(){
     v+=dt*a;
+    std::cout << a.x << std::endl;
     y+=(v.y()*dt)/width_window;
     x+=v.x()*dt/width_window;
 }
@@ -33,7 +34,7 @@ void jumper :: accelere(){
     else if (k==16777236){
         v=-2;
     }
-    a=(-m*9.81)/m;
+    a=(-9.81;
 
 }
 
