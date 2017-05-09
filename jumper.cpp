@@ -19,33 +19,79 @@ int Clavier() {
     return 0;
 }
 //======================================
-void jumper :: bouge(){
-    v+=dt*a;
-    std::cout << a.x << std::endl;
-    y+=(v.y()*dt)/width_window;
-    x+=v.x()*dt/width_window;
-}
 
-void jumper :: accelere(){
+void jumper::bougex(){// bouge horizontalement
     int k=Clavier();
-    if (k==16777234){
-        v=2;
+    if (k==KEY_LEFT){
+        vx=-VX;
     }
-    else if (k==16777236){
-        v=-2;
+    if(k==KEY_RIGHT){
+        vx=VX;
     }
-    a=(-9.81;
-
+    if(k==0){// demander a Monasse comment on fait pour gerer mieux les appuie long pour les touches
+        vx=0;
+    }
+    x+=int(vx*dt);
+}
+void jumper::bougey(){
+    y=y+vy*dt;
 }
 
-bool jumper::perdu(){
-    if(y < 0)
+
+void jumper :: accelere(){// acceleration verticale
+    vy=vy+G*dt;
+}
+
+bool jumper::ascention(){
+    return (vy<0);
+}
+
+bool jumper::hautducadre(){
+    return (y+vy*dt<hauteurmax);
+}
+
+bool jumper::pasperdu(){
+    if(y+vy*dt < height_window)
         return true;
+    else
+        return false;
+}
+
+float jumper:: vitesse(){
+    return vy;
+}
+
+void jumper::putposverti(int posy){
+    y=posy;
 }
 
 void jumper::affiche(){
-    fillRect(x,y,3,3,BLUE);
+    fillRect(x,y,taille_jumper,taille_jumper,BLUE);
 }
 void jumper::efface(){
-    fillRect(x,y,3,3,WHITE);
+    fillRect(x,y,taille_jumper,taille_jumper,WHITE);
+}
+bool jumper::test_rebond(std :: vector<marche> Marches){
+    int x_plateforme;
+    int y_plateforme;
+    bool proche=false;
+    int n=Marches.size();
+    marche newmarch;
+    for (int i=0; i<n;i++){
+        newmarch=Marches[i];
+        x_plateforme=newmarch.posCoin().x();
+        y_plateforme=newmarch.posCoin().y();
+
+        if (abs(y_plateforme-y)<2){
+
+            if (x_plateforme<x<x_plateforme+width_plat){
+                proche=true;
+                cout<<x_plateforme<<endl;
+                vy=30;
+                cout<<"true"<<endl;
+            }
+        }
+        Marches.push_back(newmarch);
+    }
+
 }
