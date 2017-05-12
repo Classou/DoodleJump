@@ -9,10 +9,10 @@ using namespace Imagine;
 #include <cassert>
 #include"marche.h"
 using namespace std;
-const float G=5;
+const float G=17;
 const int hauteurmax=200;
-const int VX=20;
-const int VY=20;
+const int VX=30;
+const int VY=60;
 
 const int taille_jumper=10;
 class jumper{
@@ -24,8 +24,9 @@ public :
     jumper(){
         x=width_window/2;
         y=height_window/2;
-        vy=-25;
+        vy=-40;
     }
+    float donnevy();
     void accelere(); ///acceleration verticale
     void bougex();
     void bougey();

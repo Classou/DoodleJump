@@ -26,11 +26,12 @@ class marche{
     int w;     //Largeur
     int h;     //Hauteur
 public:
-    marche(int width,int height,Color col); //Génère une marche en bas de l'image, avec position horizontale aléatoire
+    marche(int width,int height,Color col,int y); //Génère une marche en bas de l'image, avec position horizontale aléatoire
     marche(); //Constructeur vide pour pouvoir générer un tableau
     void affiche(); //Affiche un marche
     void efface(); //Efface la marche
     IntPoint2 posCoin(); //Renvoie la position du coin en haut à gauche
     IntPoint2 dim(); //Renvoie (width,height)
     void defile(float vy); //Déplace la marche de un cran vers le bas
+    marche initMarches();
 };

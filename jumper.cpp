@@ -20,6 +20,10 @@ int Clavier() {
 }
 //======================================
 
+float jumper::donnevy(){
+    return vy;
+}
+
 void jumper::bougex(){// bouge horizontalement
     int k=Clavier();
     if (k==KEY_LEFT){
@@ -82,12 +86,13 @@ bool jumper::test_rebond(std :: vector<marche> Marches){
         x_plateforme=newmarch.posCoin().x();
         y_plateforme=newmarch.posCoin().y();
 
-        if (abs(y_plateforme-y)<2){
+        if (abs(y_plateforme-y)<3){
 
-            if (x_plateforme<x<x_plateforme+width_plat){
+            if (x_plateforme<x && x<x_plateforme+width_plat){
                 proche=true;
-                cout<<x_plateforme<<endl;
-                vy=30;
+                cout<<"plat"<<x_plateforme<<endl;
+                cout<<"jumper"<<x<<endl;
+                vy=-VY;
                 cout<<"true"<<endl;
             }
         }
