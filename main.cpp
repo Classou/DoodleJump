@@ -6,11 +6,11 @@ using namespace std;
 #include<vector>
 
 
-const int dt=0.1;//temps infinitésimal
+const double dt = 0.1;//temps infinitésimal
 
 
 void deplacement_environnement(std :: vector<marche>&Marches){
-    if(((Marches[0]).posCoin()).y()>8* height_plat){
+    if(((Marches[0]).posCoin()).y()>10* height_plat){
         marche a(width_plat,height_plat,col);
         Marches.insert(Marches.begin(),a);
     }
