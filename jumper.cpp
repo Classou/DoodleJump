@@ -96,7 +96,7 @@ bool jumper::test_rebond(std :: vector<marche> Marches){
                 cout<<"true"<<endl;
             }
         }
-        Marches.push_back(newmarch);
+//        Marches.push_back(newmarch);
     }
 
 }

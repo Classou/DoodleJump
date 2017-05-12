@@ -79,8 +79,6 @@ int main(){
 
     while(pas_perdu){
 
-        noRefreshBegin();
-        GraphismeFond();
 
 
         // Gestion du Jumper
@@ -98,12 +96,15 @@ int main(){
 
 ////////////////////////////        version semi finale (wtf "semi finale"???) du main
 
+        GraphismeFond();
         Affichemarches(Marches);
         bonhomme.efface();
         bonhomme.accelere();
         bonhomme.bougex();
         if(bonhomme.ascention()){
             if(bonhomme.hautducadre()){
+//                noRefreshBegin();
+//                noRefreshEnd();
                 bonhomme.putposverti(hauteurmax);
                 Defilementmarches(Marches,-bonhomme.vitesse());
             }
@@ -117,7 +118,6 @@ int main(){
         }
         bonhomme.affiche();
         milliSleep(10);
-        norefreshend();
     }
     return 0;
 }
