@@ -6,6 +6,25 @@ using namespace std;
 #include <iostream>
 #include<vector>
 
+
+void GraphismeFond(){
+    //Couleur de fond
+    Color rosepale;
+    rosepale.r()=255;
+    rosepale.g()=155;
+    rosepale.b()=170;
+    fillRect(0,0,width_window,height_window,rosepale);
+
+    //Image de fond de coeur bonbons
+    int w,h;
+    byte* rgb;
+    loadColorImage(srcPath("Coeur2.bmp"),rgb,w,h);
+    NativeBitmap coeur(w,h);
+    coeur.setColorImage(0,0,rgb,w,h);
+    putNativeBitmap(0,height_window/5,coeur);
+}
+
+
 void Affichemarches(std::vector<marche> & Marches){
     for (int i=0;i<Marches.size();i++){
         Marches[i].affiche();
@@ -21,6 +40,7 @@ std :: vector<marche> init_marches(){
 }
 
 void Defilementmarches(std::vector<marche> & Marches, float vy){
+
     //Gère un vecteur de marches, qui en entrée n'est pas vide
     if(((Marches[0]).posCoin()).y()*5>(rand()%300+5)* height_plat ){
         marche a(width_plat,height_plat,col,0);
@@ -51,6 +71,7 @@ int main(){
     jumper bonhomme;
 
     openWindow(width_window,height_window);
+    GraphismeFond();
 
     std :: vector<marche> Marches=init_marches();
     bool pas_perdu=true;
@@ -58,10 +79,13 @@ int main(){
 
     while(pas_perdu){
 
+        noRefreshBegin();
+        GraphismeFond();
 
 
         // Gestion du Jumper
 //        bonhomme.accelere();
+
 
 //        bonhomme.efface();
 //        bonhomme.bougey();
@@ -93,6 +117,7 @@ int main(){
         }
         bonhomme.affiche();
         milliSleep(10);
+        norefreshend();
     }
     return 0;
 }
