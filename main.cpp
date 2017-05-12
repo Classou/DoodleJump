@@ -7,6 +7,7 @@ using namespace std;
 #include<vector>
 
 
+
 void GestionDesMarches(std::vector<marche> & Marches, float vy){
     //Gère un vecteur de marches, qui en entrée n'est pas vide
     if(((Marches[0]).posCoin()).y()*5>(rand()%300+5)* height_plat ){
