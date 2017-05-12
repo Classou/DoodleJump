@@ -6,7 +6,22 @@ using namespace std;
 #include <iostream>
 #include<vector>
 
+void GraphismeFond(){
+    //Couleur de fond
+    Color rosepale;
+    rosepale.r()=255;
+    rosepale.g()=155;
+    rosepale.b()=170;
+    fillRect(0,0,width_window,height_window,rosepale);
 
+    //Image de fond de coeur bonbons
+    int w,h;
+    byte* rgb;
+    loadColorImage(srcPath("Coeur2.bmp"),rgb,w,h);
+    NativeBitmap coeur(w,h);
+    coeur.setColorImage(0,0,rgb,w,h);
+    putNativeBitmap(0,height_window/5,coeur);
+}
 
 void GestionDesMarches(std::vector<marche> & Marches, float vy){
     //Gère un vecteur de marches, qui en entrée n'est pas vide
@@ -39,6 +54,7 @@ int main(){
     jumper bonhomme;
 
     openWindow(width_window,height_window);
+    GraphismeFond();
 
     std :: vector<marche> Marches;
     bool pas_perdu=true;
@@ -47,20 +63,22 @@ int main(){
 
     while(pas_perdu){
 
+        noRefreshBegin();
+        GraphismeFond();
 
-        GestionDesMarches(Marches,30);
+        GestionDesMarches(Marches,10);
 
         // Gestion du Jumper
         bonhomme.accelere();
-
         bonhomme.efface();
         bonhomme.bougey();
         bonhomme.bougex();
         bonhomme.affiche();
+        noRefreshEnd();
         milliSleep(10);
 
 
-////////////////////////////        version semi finale du main
+// //////////////////////////        version semi finale du main
 //        bonhomme.efface();
 //        bonhomme.accelere();
 //        bonhomme.bougex();
