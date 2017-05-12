@@ -16,6 +16,7 @@ const int width_plat=60;
 const int height_plat=6;
 const int width_window=250;
 const int height_window=500;
+const float dt=0.1;
 const Color col=RED;
 
 
@@ -31,5 +32,5 @@ public:
     void efface(); //Efface la marche
     IntPoint2 posCoin(); //Renvoie la position du coin en haut à gauche
     IntPoint2 dim(); //Renvoie (width,height)
-    void defile(); //Déplace la marche de un cran vers le bas
+    void defile(float vy); //Déplace la marche de un cran vers le bas
 };
