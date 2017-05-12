@@ -6,12 +6,24 @@ using namespace std;
 #include <iostream>
 #include<vector>
 
+void Affichemarches(std::vector<marche> & Marches){
+    for (int i=0;i<Marches.size();i++){
+        Marches[i].affiche();
+    }
+}
+std :: vector<marche> init_marches(){
+     std :: vector<marche> Marches;
+     for (int i=0;i<10;i++){
+         marche newM=marche(width_plat,height_plat,RED,int(height_window*i/10));
+         Marches.push_back(newM);
+     }
+     return Marches;
+}
 
-
-void GestionDesMarches(std::vector<marche> & Marches, float vy){
+void Defilementmarches(std::vector<marche> & Marches, float vy){
     //Gère un vecteur de marches, qui en entrée n'est pas vide
     if(((Marches[0]).posCoin()).y()*5>(rand()%300+5)* height_plat ){
-        marche a(width_plat,height_plat,col);
+        marche a(width_plat,height_plat,col,0);
         Marches.insert(Marches.begin(),a);
     }
 
@@ -40,49 +52,47 @@ int main(){
 
     openWindow(width_window,height_window);
 
-    std :: vector<marche> Marches;
+    std :: vector<marche> Marches=init_marches();
     bool pas_perdu=true;
-    marche b(width_plat,height_plat,col);
-    Marches.push_back(b);
+
 
     while(pas_perdu){
 
 
-        GestionDesMarches(Marches,30);
 
         // Gestion du Jumper
-        bonhomme.accelere();
-
-        bonhomme.efface();
-        bonhomme.bougey();
-        bonhomme.bougex();
-        bonhomme.affiche();
-        milliSleep(10);
-
-
-////////////////////////////        version semi finale du main
-//        bonhomme.efface();
 //        bonhomme.accelere();
+
+//        bonhomme.efface();
+//        bonhomme.bougey();
 //        bonhomme.bougex();
-//        if(bonhomme.ascention()){
-//            if(bonhomme.hautducadre()){
-//                bonhomme.putposverti(hauteurmax);
-//                GestionDesMarches(Marches,bonhomme.vitesse());
-//            }
-//            else{
-//                bonhomme.bougey();
-//            }
-//        }
-//        else{
-//            if(bonhomme.test_rebond(Marches))
-//            bonhomme.bougey();
-//        }
 //        bonhomme.affiche();
+
+//        bonhomme.test_rebond(Marches);
 //        milliSleep(10);
 
 
+////////////////////////////        version semi finale (wtf "semi finale"???) du main
+
+        Affichemarches(Marches);
+        bonhomme.efface();
+        bonhomme.accelere();
+        bonhomme.bougex();
+        if(bonhomme.ascention()){
+            if(bonhomme.hautducadre()){
+                bonhomme.putposverti(hauteurmax);
+                Defilementmarches(Marches,-bonhomme.vitesse());
+            }
+            else{
+                bonhomme.bougey();
+            }
+        }
+        else{
+            if(bonhomme.test_rebond(Marches))
+                bonhomme.bougey();
+        }
+        bonhomme.affiche();
+        milliSleep(10);
     }
-
-
     return 0;
 }
