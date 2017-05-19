@@ -20,6 +20,8 @@ class jumper{
     int y; //altitude du sauteur par rapport au milieu de l écran
     float vy; //la vitesse verticale du sauteur
     float vx; // la vitesse horizontale du sauteur, elle n'aura que 3 valeurs possible
+    int w;
+    int h;
 public :
     jumper(){
         x=width_window/2;

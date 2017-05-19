@@ -12,15 +12,15 @@ void GraphismeFond(){
     rosepale.r()=255;
     rosepale.g()=155;
     rosepale.b()=170;
-    fillRect(0,0,width_window,height_window,rosepale);
+    fillRect(0,0,width_window,height_window,BLACK);
 
-    //Image de fond de coeur bonbons
+    //Image de fond Star Wars
     int w,h;
     byte* rgb;
-    loadColorImage(srcPath("Coeur2.bmp"),rgb,w,h);
-    NativeBitmap coeur(w,h);
-    coeur.setColorImage(0,0,rgb,w,h);
-    putNativeBitmap(0,height_window/5,coeur);
+    loadColorImage(srcPath("Star_Wars.png"),rgb,w,h);
+    NativeBitmap texte(w,h);
+    texte.setColorImage(0,0,rgb,w,h);
+    putNativeBitmap(0,height_window/5,texte);
 }
 
 void GestionDesMarches(std::vector<marche> & Marches, float vy){

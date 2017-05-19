@@ -66,8 +66,13 @@ void jumper::putposverti(int posy){
 }
 
 void jumper::affiche(){
-    fillRect(x,y,10,10,BLUE);
+//    fillRect(x,y,10,10,BLUE);
+    byte* rgb;
+    loadColorImage(srcPath("Yoda.png"),rgb,w,h);
+    NativeBitmap yoda(w,h);
+    yoda.setColorImage(0,0,rgb,w,h);
+    putNativeBitmap(x-w/2,y-h,yoda);
 }
 void jumper::efface(){
-    fillRect(x,y,10,10,WHITE);
+    fillRect(x-w/2,y-h,w,h,BLACK);
 }
