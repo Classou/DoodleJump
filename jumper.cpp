@@ -2,8 +2,9 @@
 #include <ctime>
 using namespace std;
 #include "jumper.h"
-
-
+#include "marche.h"
+#include <iostream>
+using namespace std;
 
 
 
@@ -19,6 +20,9 @@ int Clavier() {
 }
 //======================================
 
+float jumper::donnevy(){
+    return vy;
+}
 
 void jumper::bougex(){// bouge horizontalement
     int k=Clavier();
@@ -75,4 +79,29 @@ void jumper::affiche(){
 }
 void jumper::efface(){
     fillRect(x-w/2,y-h,w,h,BLACK);
+}
+bool jumper::test_rebond(std :: vector<marche> Marches){
+    int x_plateforme;
+    int y_plateforme;
+    bool proche=false;
+    int n=Marches.size();
+    marche newmarch;
+    for (int i=0; i<n;i++){
+        newmarch=Marches[i];
+        x_plateforme=newmarch.posCoin().x();
+        y_plateforme=newmarch.posCoin().y();
+
+        if (abs(y_plateforme-y)<3){
+
+            if (x_plateforme<x && x<x_plateforme+width_plat){
+                proche=true;
+                cout<<"plat"<<x_plateforme<<endl;
+                cout<<"jumper"<<x<<endl;
+                vy=-VY;
+                cout<<"true"<<endl;
+            }
+        }
+//        Marches.push_back(newmarch);
+    }
+
 }
