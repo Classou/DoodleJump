@@ -72,7 +72,7 @@ void jumper::putposverti(int posy){
     y=posy;
 }
 
-void jumper::affiche(){
+void jumper::affiche() {
 //    fillRect(x,y,10,10,BLUE);
     byte* rgb;
     loadColorImage(srcPath("Yoda.png"),rgb,w,h);
