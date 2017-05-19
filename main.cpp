@@ -69,6 +69,8 @@ int main(){
     openWindow(width_window,height_window);
     GraphismeFond();
 
+    int score;
+
     std :: vector<marche> Marches=init_marches();
     bool pas_perdu=true;
 
@@ -100,7 +102,6 @@ int main(){
         bonhomme.bougex();
         if(bonhomme.ascention()){
             if(bonhomme.hautducadre()){
-
                 bonhomme.putposverti(hauteurmax);
                 Defilementmarches(Marches,-bonhomme.vitesse());
             }
@@ -113,6 +114,9 @@ int main(){
                 bonhomme.bougey();
         }
         bonhomme.affiche();
+        score=bonhomme.getScore();
+        drawString(0,40,"Score : "+to_string(score),YELLOW,40);
+        noRefreshEnd();
         milliSleep(10);
     }
     return 0;
