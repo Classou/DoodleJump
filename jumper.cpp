@@ -105,3 +105,14 @@ bool jumper::test_rebond(std :: vector<marche> Marches){
     }
 
 }
+
+
+//Score
+int jumper::getScore(){
+    return score;
+}
+
+void jumper::setScore(){
+    if(ascention() && hautducadre())
+        score-=vy;
+}
