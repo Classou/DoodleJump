@@ -9,10 +9,6 @@ using namespace std;
 
 void GraphismeFond(){
     //Couleur de fond
-    Color rosepale;
-    rosepale.r()=255;
-    rosepale.g()=155;
-    rosepale.b()=170;
     fillRect(0,0,width_window,height_window,BLACK);
 
     //Image de fond Star Wars
@@ -95,16 +91,16 @@ int main(){
 
 
 ////////////////////////////        version semi finale (wtf "semi finale"???) du main
-
+        noRefreshBegin();
         GraphismeFond();
         Affichemarches(Marches);
         bonhomme.efface();
+        noRefreshEnd();
         bonhomme.accelere();
         bonhomme.bougex();
         if(bonhomme.ascention()){
             if(bonhomme.hautducadre()){
-//                noRefreshBegin();
-//                noRefreshEnd();
+
                 bonhomme.putposverti(hauteurmax);
                 Defilementmarches(Marches,-bonhomme.vitesse());
             }
