@@ -69,13 +69,13 @@ void jumper::putposverti(int posy){
     y=posy;
 }
 
-void jumper::affiche(){
+void jumper::affiche() const{
     fillRect(x,y,taille_jumper,taille_jumper,BLUE);
 }
 void jumper::efface(){
     fillRect(x,y,taille_jumper,taille_jumper,WHITE);
 }
-bool jumper::test_rebond(std :: vector<marche> Marches){
+bool jumper::test_rebond(const std :: vector<marche> &Marches){
     int x_plateforme;
     int y_plateforme;
     bool proche=false;
@@ -86,7 +86,7 @@ bool jumper::test_rebond(std :: vector<marche> Marches){
         x_plateforme=newmarch.posCoin().x();
         y_plateforme=newmarch.posCoin().y();
 
-        if (abs(y_plateforme-y)<3){
+        if (abs(y_plateforme-(y+1+height_plat))<3){
 
             if (x_plateforme<x && x<x_plateforme+width_plat){
                 proche=true;
