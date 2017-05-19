@@ -96,15 +96,15 @@ int main(){
 
 ////////////////////////////        version semi finale (wtf "semi finale"???) du main
 
+        noRefreshBegin();
         GraphismeFond();
         Affichemarches(Marches);
         bonhomme.efface();
+        noRefreshEnd();
         bonhomme.accelere();
         bonhomme.bougex();
         if(bonhomme.ascention()){
             if(bonhomme.hautducadre()){
-//                noRefreshBegin();
-//                noRefreshEnd();
                 bonhomme.putposverti(hauteurmax);
                 Defilementmarches(Marches,-bonhomme.vitesse());
             }
