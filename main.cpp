@@ -9,19 +9,15 @@ using namespace std;
 
 void GraphismeFond(){
     //Couleur de fond
-    Color rosepale;
-    rosepale.r()=255;
-    rosepale.g()=155;
-    rosepale.b()=170;
-    fillRect(0,0,width_window,height_window,rosepale);
+    fillRect(0,0,width_window,height_window,BLACK);
 
-    //Image de fond de coeur bonbons
+    //Image de fond Star Wars
     int w,h;
     byte* rgb;
-    loadColorImage(srcPath("Coeur2.bmp"),rgb,w,h);
-    NativeBitmap coeur(w,h);
-    coeur.setColorImage(0,0,rgb,w,h);
-    putNativeBitmap(0,height_window/5,coeur);
+    loadColorImage(srcPath("Star_Wars.png"),rgb,w,h);
+    NativeBitmap texte(w,h);
+    texte.setColorImage(0,0,rgb,w,h);
+    putNativeBitmap(0,height_window/5,texte);
 }
 
 
@@ -80,6 +76,8 @@ int main(){
     openWindow(width_window,height_window);
     GraphismeFond();
 
+    int score;
+
     std :: vector<marche> Marches=init_marches();
     bool pas_perdu=true;
 
@@ -122,10 +120,13 @@ int main(){
             }
         }
         else{
-            if(bonhomme.test_rebond(Marches))
+            if(bonhomme.rebond(Marches))
                 bonhomme.bougey();
         }
         bonhomme.affiche();
+        score=bonhomme.getScore();
+        drawString(0,40,"Score : "+to_string(score),YELLOW,40);
+        noRefreshEnd();
         milliSleep(10);
     }
     return 0;
