@@ -1,11 +1,16 @@
 #include "marche.h"
 
-marche::marche(int width,int height,Color col,int y){
+marche::marche(int width, int height, Color col, int y, bool mobi){
     w=width;
     h=height;
     C=col;
     pos.x()=rand()%(width_window-width);
     pos.y()=y;
+    mobile=mobi;
+    if(mobi==true){
+        Vx=rand()%VX-(VX/2);
+    }
+    else Vx=0;
 }
 
 //Cobstructeur vide pour les tableaux
@@ -40,5 +45,18 @@ void marche::efface(){
 //Descente de la marche de 1 pixel
 void marche::defile(float vy){
     pos.y()+=int (vy*dt);
+}
+
+void marche::deplaceX(){
+    pos.x()+=int(Vx*dt);
+}
+
+void marche::changedirection(){
+    if(Vx>0 && pos.x()+int(Vx*dt)+width_plat>width_window){
+        Vx=-Vx;
+    }
+    if(Vx<0 && pos.x()+int(Vx*dt)<0){
+        Vx=-Vx;
+    }
 }
 
