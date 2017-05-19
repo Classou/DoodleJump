@@ -1,11 +1,11 @@
 #include "marche.h"
 
-marche::marche(int width,int height,Color col){
+marche::marche(int width,int height,Color col,int y){
     w=width;
     h=height;
     C=col;
     pos.x()=rand()%(width_window-width);
-    pos.y()=0;
+    pos.y()=y;
 }
 
 //Cobstructeur vide pour les tableaux
@@ -45,5 +45,4 @@ void marche::efface(){
 void marche::defile(float vy){
     pos.y()+=int (vy*dt);
 }
-
 
