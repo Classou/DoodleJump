@@ -31,7 +31,8 @@ public :
     void bougex();
     void bougey();
     bool pasperdu();
-    bool test_rebond(const std :: vector<marche> &Marches1 verifie si le sauteur va rencontrer une marche et change sa vitesse verticale
+
+    bool rebond(const std :: vector<marche> &Marches1); //verifie si le sauteur va rencontrer une marche et change sa vitesse verticale
     void affiche() const;
     void efface();
     bool hautducadre();
