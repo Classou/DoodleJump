@@ -110,7 +110,7 @@ int main(){
             }
         }
         else{
-            if(bonhomme.test_rebond(Marches))
+            if(bonhomme.rebond(Marches))
                 bonhomme.bougey();
         }
         bonhomme.affiche();
