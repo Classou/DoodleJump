@@ -29,10 +29,16 @@ void Affichemarches(std::vector<marche> & Marches){
 std :: vector<marche> init_marches(){
      std :: vector<marche> Marches;
      for (int i=0;i<10;i++){
-         marche newM=marche(width_plat,height_plat,RED,int(height_window*i/10));
+         marche newM=marche(width_plat,height_plat,RED,int(height_window*i/10),true);
          Marches.push_back(newM);
      }
      return Marches;
+}
+void bougemarches(vector<marche> &marches){
+    for(int i=0;i<marches.size();i++){
+        marches[i].changedirection();
+        marches[i].deplaceX();
+    }
 }
 
 void Defilementmarches(std::vector<marche> & Marches, float vy){
@@ -59,6 +65,7 @@ void Defilementmarches(std::vector<marche> & Marches, float vy){
         Marches.back().affiche();
     }
 }
+
 
 
 //======================================
@@ -93,9 +100,12 @@ int main(){
 
 
 ////////////////////////////        version semi finale (wtf "semi finale"???) du main
+
         noRefreshBegin();
         GraphismeFond();
+        bougemarches(Marches);
         Affichemarches(Marches);
+
         bonhomme.efface();
         noRefreshEnd();
         bonhomme.accelere();

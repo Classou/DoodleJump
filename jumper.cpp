@@ -9,6 +9,7 @@ using namespace std;
 
 
 //**************************************
+
 int Clavier() {
     Event e;
     do {
@@ -17,7 +18,9 @@ int Clavier() {
             return e.key;
     } while (e.type!=EVT_NONE);
     return 0;
+
 }
+
 //======================================
 
 float jumper::donnevy(){
