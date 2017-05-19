@@ -6,6 +6,21 @@ using namespace std;
 #include <iostream>
 #include<vector>
 
+
+void GraphismeFond(){
+    //Couleur de fond
+    fillRect(0,0,width_window,height_window,BLACK);
+
+    //Image de fond Star Wars
+    int w,h;
+    byte* rgb;
+    loadColorImage(srcPath("Star_Wars.png"),rgb,w,h);
+    NativeBitmap texte(w,h);
+    texte.setColorImage(0,0,rgb,w,h);
+    putNativeBitmap(0,height_window/5,texte);
+}
+
+
 void Affichemarches(std::vector<marche> & Marches){
     for (int i=0;i<Marches.size();i++){
         Marches[i].affiche();
@@ -21,6 +36,7 @@ std :: vector<marche> init_marches(){
 }
 
 void Defilementmarches(std::vector<marche> & Marches, float vy){
+
     //Gère un vecteur de marches, qui en entrée n'est pas vide
     if(((Marches[0]).posCoin()).y()*5>(rand()%300+5)* height_plat ){
         marche a(width_plat,height_plat,col,0);
@@ -51,6 +67,9 @@ int main(){
     jumper bonhomme;
 
     openWindow(width_window,height_window);
+    GraphismeFond();
+
+    int score;
 
     std :: vector<marche> Marches=init_marches();
     bool pas_perdu=true;
@@ -63,6 +82,7 @@ int main(){
         // Gestion du Jumper
 //        bonhomme.accelere();
 
+
 //        bonhomme.efface();
 //        bonhomme.bougey();
 //        bonhomme.bougex();
@@ -73,9 +93,11 @@ int main(){
 
 
 ////////////////////////////        version semi finale (wtf "semi finale"???) du main
-
+        noRefreshBegin();
+        GraphismeFond();
         Affichemarches(Marches);
         bonhomme.efface();
+        noRefreshEnd();
         bonhomme.accelere();
         bonhomme.bougex();
         if(bonhomme.ascention()){
@@ -92,6 +114,9 @@ int main(){
                 bonhomme.bougey();
         }
         bonhomme.affiche();
+        score=bonhomme.getScore();
+        drawString(0,40,"Score : "+to_string(score),YELLOW,40);
+        noRefreshEnd();
         milliSleep(10);
     }
     return 0;

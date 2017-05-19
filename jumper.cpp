@@ -69,11 +69,16 @@ void jumper::putposverti(int posy){
     y=posy;
 }
 
-void jumper::affiche() const{
-    fillRect(x,y,taille_jumper,taille_jumper,BLUE);
+void jumper::affiche(){
+//    fillRect(x,y,10,10,BLUE);
+    byte* rgb;
+    loadColorImage(srcPath("Yoda.png"),rgb,w,h);
+    NativeBitmap yoda(w,h);
+    yoda.setColorImage(0,0,rgb,w,h);
+    putNativeBitmap(x-w/2,y-h,yoda);
 }
 void jumper::efface(){
-    fillRect(x,y,taille_jumper,taille_jumper,WHITE);
+    fillRect(x-w/2,y-h,w,h,BLACK);
 }
 bool jumper::rebond(const std :: vector<marche> &Marches){
     int x_C;
@@ -110,8 +115,17 @@ bool jumper::rebond(const std :: vector<marche> &Marches){
                 vy=-VY;
                 cout<<"true"<<endl;
         }
-        //Marches.push_back(newmarch);
-
     }
 
+}
+
+
+//Score
+int jumper::getScore(){
+    return score;
+}
+
+void jumper::setScore(){
+    if(ascention() && hautducadre())
+        score-=vy;
 }

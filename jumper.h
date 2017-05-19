@@ -20,11 +20,15 @@ class jumper{
     int y; //altitude du sauteur par rapport au milieu de l écran
     float vy; //la vitesse verticale du sauteur
     float vx; // la vitesse horizontale du sauteur, elle n'aura que 3 valeurs possible
+    int w;
+    int h;
+    int score;
 public :
     jumper(){
         x=width_window/2;
         y=height_window/2;
         vy=-40;
+        score=0;
     }
     float donnevy();
     void accelere(); ///acceleration verticale
@@ -39,5 +43,7 @@ public :
     bool ascention();
     float vitesse();///donne la vitesse verticale
     void putposverti(int posy);
+    int getScore();
+    void setScore();
 };
 #endif //JUMPER_H

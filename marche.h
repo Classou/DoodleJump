@@ -12,10 +12,10 @@ using namespace std;
 
 
 //Paramètres initiaux pour les marches, et taille de la fenêtre
-const int width_plat=60;
-const int height_plat=6;
-const int width_window=250;
-const int height_window=500;
+const int width_plat=110;
+const int height_plat=15;
+const int width_window=400;
+const int height_window=800;
 const float dt=0.1;
 const Color col=RED;
 
