@@ -63,11 +63,10 @@ bool jumper::hautducadre(){
 }
 
 bool jumper::pasperdu(){
-    if(y+vy*dt <= height_window)
+    if(y+vy*dt < height_window)
         return true;
-    if(y>height_window)
+    else
         return false;
-    cout<<y<<endl;
 }
 
 float jumper:: vitesse(){

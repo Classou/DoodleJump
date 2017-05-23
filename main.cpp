@@ -5,7 +5,7 @@ using namespace std;
 #include "jumper.h"
 #include <iostream>
 #include<vector>
-#include<stdlib.h>
+
 
 void GraphismeFond(){
     //Couleur de fond
@@ -41,7 +41,8 @@ void bougemarches(vector<marche> &marches){
     }
 }
 
-void Defilementmarches(std::vector<marche> & Marches, float vy,float & score, NativeBistmap sabre){
+void Defilementmarches(std::vector<marche> & Marches, float vy, NativeBitmap sabre){
+
     //Gère un vecteur de marches, qui en entrée n'est pas vide
     if(((Marches[0]).posCoin()).y()*5>(rand()%300+5)* height_plat ){
         marche a(width_plat,height_plat,col,0);
@@ -50,9 +51,8 @@ void Defilementmarches(std::vector<marche> & Marches, float vy,float & score, Na
 
     for (int i=0;i<Marches.size()-1;i++){
         Marches[i].efface();
-        Marches[i].defile(vy,score);
-        Marches[i].affiche(sabree);
-
+        Marches[i].defile(vy);
+        Marches[i].affiche(sabre);
 
     }
     if(Marches.back().posCoin().y()+height_plat>=height_window){
@@ -61,7 +61,7 @@ void Defilementmarches(std::vector<marche> & Marches, float vy,float & score, Na
     }
     else{
         Marches.back().efface();
-        Marches.back().defile(vy,score);
+        Marches.back().defile(vy);
         Marches.back().affiche(sabre);
     }
 }
@@ -70,14 +70,13 @@ void Defilementmarches(std::vector<marche> & Marches, float vy,float & score, Na
 
 //======================================
 int main(){
-    float score=0;
     //initialisation bonhomme
     jumper bonhomme;
 
-    Window jeu=openWindow(width_window,height_window);
+    openWindow(width_window,height_window);
     GraphismeFond();
-    marche image_marche;
-    std :: vector<marche> Marches=init_marches(image_marche.dim());
+
+    int score;
 
     marche image_marche;
     std :: vector<marche> Marches=init_marches(image_marche.dim());
@@ -87,7 +86,7 @@ int main(){
     NativeBitmap sabre=image_marche.load();
 
 
-    while(bonhomme.pasperdu()){
+    while(pas_perdu){
 
 
 
@@ -116,7 +115,6 @@ int main(){
         if(bonhomme.ascention()){
             if(bonhomme.hautducadre()){
                 bonhomme.putposverti(hauteurmax);
-                Defilementmarches(Marches,-bonhomme.vitesse(),score,sabre);
                 Defilementmarches(Marches,-bonhomme.vitesse(),sabre);
             }
             else{
@@ -127,17 +125,11 @@ int main(){
             if(bonhomme.rebond(Marches))
                 bonhomme.bougey();
         }
-
         bonhomme.affiche(r2d2);
-        drawString(0,40,"Score : "+to_string(int(score)),YELLOW,40);
+        score=bonhomme.getScore();
+        drawString(0,40,"Score : "+to_string(score),YELLOW,40);
         noRefreshEnd();
         milliSleep(1);
-
     }
-    closeWindow(jeu);
-    openWindow(width_window,height_window);
-
-    drawString(20,200,"GAME OVER, score :"+to_string(int(score)),YELLOW,30);
-    click();
     return 0;
 }

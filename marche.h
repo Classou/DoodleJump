@@ -37,7 +37,8 @@ public:
     void efface(); //Efface la marche
     IntPoint2 posCoin(); //Renvoie la position du coin en haut à gauche
     IntPoint2 dim(); //Renvoie (width,height)
-    void defile(float vy,float & score); //Déplace la marche de un cran vers le bas
+    void defile(float vy); //Déplace la marche de un cran vers le bas
     marche initMarches(IntPoint2 dimens);
-
+    void deplaceX();
+    void changedirection();
 };
