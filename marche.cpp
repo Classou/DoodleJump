@@ -50,9 +50,8 @@ void marche::efface(){
 }
 
 //Descente de la marche de 1 pixel
-void marche::defile(float vy, float &score){
+void marche::defile(float vy){
     pos.y()+=int (vy*dt);
-    score+=0.1;
 }
 
 
