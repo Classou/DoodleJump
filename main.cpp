@@ -5,7 +5,7 @@ using namespace std;
 #include "jumper.h"
 #include <iostream>
 #include<vector>
-
+#include<stdlib.h>
 
 void GraphismeFond(){
     //Couleur de fond
@@ -35,7 +35,7 @@ std :: vector<marche> init_marches(){
      return Marches;
 }
 
-void Defilementmarches(std::vector<marche> & Marches, float vy){
+void Defilementmarches(std::vector<marche> & Marches, float vy,float & score){
 
     //Gère un vecteur de marches, qui en entrée n'est pas vide
     if(((Marches[0]).posCoin()).y()*5>(rand()%300+5)* height_plat ){
@@ -45,7 +45,7 @@ void Defilementmarches(std::vector<marche> & Marches, float vy){
 
     for (int i=0;i<Marches.size()-1;i++){
         Marches[i].efface();
-        Marches[i].defile(vy);
+        Marches[i].defile(vy,score);
         Marches[i].affiche();
 
     }
@@ -55,7 +55,7 @@ void Defilementmarches(std::vector<marche> & Marches, float vy){
     }
     else{
         Marches.back().efface();
-        Marches.back().defile(vy);
+        Marches.back().defile(vy,score);
         Marches.back().affiche();
     }
 }
@@ -63,19 +63,18 @@ void Defilementmarches(std::vector<marche> & Marches, float vy){
 
 //======================================
 int main(){
+    float score=0;
     //initialisation bonhomme
     jumper bonhomme;
 
-    openWindow(width_window,height_window);
+    Window jeu=openWindow(width_window,height_window);
     GraphismeFond();
-
-    int score;
 
     std :: vector<marche> Marches=init_marches();
     bool pas_perdu=true;
 
 
-    while(pas_perdu){
+    while(bonhomme.pasperdu()){
 
 
 
@@ -102,7 +101,7 @@ int main(){
         if(bonhomme.ascention()){
             if(bonhomme.hautducadre()){
                 bonhomme.putposverti(hauteurmax);
-                Defilementmarches(Marches,-bonhomme.vitesse());
+                Defilementmarches(Marches,-bonhomme.vitesse(),score);
             }
             else{
                 bonhomme.bougey();
@@ -113,10 +112,15 @@ int main(){
                 bonhomme.bougey();
         }
         bonhomme.affiche();
-        score=bonhomme.getScore();
-        drawString(0,40,"Score : "+to_string(score),YELLOW,40);
+        drawString(0,40,"Score : "+to_string(int(score)),YELLOW,40);
         noRefreshEnd();
         milliSleep(1);
+
     }
+    closeWindow(jeu);
+    openWindow(width_window,height_window);
+
+    drawString(20,200,"GAME OVER, score :"+to_string(int(score)),YELLOW,30);
+    click();
     return 0;
 }
