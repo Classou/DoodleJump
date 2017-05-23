@@ -38,6 +38,8 @@ public :
     NativeBitmap load();
     void affiche(NativeBitmap r2d2);
 
+    bool rebond(const std :: vector<marche> &Marches1); //verifie si le sauteur va rencontrer une marche et change sa vitesse verticale
+    void affiche();
     void efface();
     bool hautducadre();
     bool ascention();

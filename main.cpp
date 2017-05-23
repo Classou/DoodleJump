@@ -129,7 +129,7 @@ int main(){
         score=bonhomme.getScore();
         drawString(0,40,"Score : "+to_string(score),YELLOW,40);
         noRefreshEnd();
-        milliSleep(10);
+        milliSleep(1);
     }
     return 0;
 }
