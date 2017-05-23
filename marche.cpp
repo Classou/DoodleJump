@@ -5,7 +5,7 @@ marche::marche(int width,int height,Color col,int y){
     h=height;
     C=col;
     pos.x()=rand()%(width_window-width);
-    pos.y()=y;
+    pos.y()=0;
 }
 
 //Cobstructeur vide pour les tableaux
@@ -24,15 +24,18 @@ IntPoint2 marche::dim(){
 }
 
 //Affichage de la marche
-void marche::affiche(){
-//    fillRect(pos.x()+height_plat/2,pos.y(),w-height_plat,h+1,C);
-//    fillCircle(pos.x()+height_plat/2,pos.y()+height_plat/2,height_plat/2,C);
-//    fillCircle(pos.x()+width_plat-height_plat/2,pos.y()+height_plat/2,height_plat/2,C);
-
+NativeBitmap marche::load(){
     byte* rgb;
     loadColorImage(srcPath("Sabre_Laser.png"),rgb,w,h);
     NativeBitmap sabre(w,h);
     sabre.setColorImage(0,0,rgb,w,h);
+    return sabre;
+}
+
+void marche::affiche(NativeBitmap sabre){
+//    fillRect(pos.x()+height_plat/2,pos.y(),w-height_plat,h+1,C);
+//    fillCircle(pos.x()+height_plat/2,pos.y()+height_plat/2,height_plat/2,C);
+//    fillCircle(pos.x()+width_plat-height_plat/2,pos.y()+height_plat/2,height_plat/2,C);
     putNativeBitmap(pos.x(),pos.y(),sabre);
 }
 
@@ -45,4 +48,5 @@ void marche::efface(){
 void marche::defile(float vy){
     pos.y()+=int (vy*dt);
 }
+
 
