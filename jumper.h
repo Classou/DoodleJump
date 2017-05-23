@@ -11,8 +11,7 @@ using namespace Imagine;
 using namespace std;
 const float G=17;
 const int hauteurmax=200;
-const int VX=30;
-const int VY=60;
+
 
 const int taille_jumper=10;
 class jumper{
@@ -38,6 +37,7 @@ public :
     bool test_rebond(std :: vector<marche> Marches);/// verifie si le sauteur va rencontrer une marche et change sa vitesse verticale
     NativeBitmap load();
     void affiche(NativeBitmap r2d2);
+
     void efface();
     bool hautducadre();
     bool ascention();

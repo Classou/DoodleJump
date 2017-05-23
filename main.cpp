@@ -29,10 +29,16 @@ void Affichemarches(std::vector<marche> & Marches, NativeBitmap sabre){
 std :: vector<marche> init_marches(IntPoint2 dimens){
      std :: vector<marche> Marches;
      for (int i=0;i<10;i++){
-         marche newM=marche(dimens.x(),dimens.y(),RED,int(height_window*i/10));
+         marche newM=marche(dimens.x(),dimens.y(),RED,int(height_window*i/10),true);
          Marches.push_back(newM);
      }
      return Marches;
+}
+void bougemarches(vector<marche> &marches){
+    for(int i=0;i<marches.size();i++){
+        marches[i].changedirection();
+        marches[i].deplaceX();
+    }
 }
 
 void Defilementmarches(std::vector<marche> & Marches, float vy, NativeBitmap sabre){
@@ -59,6 +65,7 @@ void Defilementmarches(std::vector<marche> & Marches, float vy, NativeBitmap sab
         Marches.back().affiche(sabre);
     }
 }
+
 
 
 //======================================
@@ -97,8 +104,10 @@ int main(){
 
 
 ////////////////////////////        version semi finale (wtf "semi finale"???) du main
+
         noRefreshBegin();
         GraphismeFond();
+        bougemarches(Marches);
         Affichemarches(Marches,sabre);
         bonhomme.efface();
         bonhomme.accelere();
@@ -113,7 +122,7 @@ int main(){
             }
         }
         else{
-            if(bonhomme.test_rebond(Marches))
+            if(bonhomme.rebond(Marches))
                 bonhomme.bougey();
         }
         bonhomme.affiche(r2d2);
