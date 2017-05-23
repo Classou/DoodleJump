@@ -41,7 +41,7 @@ void bougemarches(vector<marche> &marches){
     }
 }
 
-void Defilementmarches(std::vector<marche> & Marches, float vy,float & score, NativeBistmap sabre){
+void Defilementmarches(std::vector<marche> & Marches, float vy,float & score, NativeBitmap sabre){
     //Gère un vecteur de marches, qui en entrée n'est pas vide
     if(((Marches[0]).posCoin()).y()*5>(rand()%300+5)* height_plat ){
         marche a(width_plat,height_plat,col,0);
@@ -51,7 +51,7 @@ void Defilementmarches(std::vector<marche> & Marches, float vy,float & score, Na
     for (int i=0;i<Marches.size()-1;i++){
         Marches[i].efface();
         Marches[i].defile(vy,score);
-        Marches[i].affiche(sabree);
+        Marches[i].affiche(sabre);
 
 
     }
@@ -76,9 +76,6 @@ int main(){
 
     Window jeu=openWindow(width_window,height_window);
     GraphismeFond();
-    marche image_marche;
-    std :: vector<marche> Marches=init_marches(image_marche.dim());
-
     marche image_marche;
     std :: vector<marche> Marches=init_marches(image_marche.dim());
     bool pas_perdu=true;
@@ -117,7 +114,6 @@ int main(){
             if(bonhomme.hautducadre()){
                 bonhomme.putposverti(hauteurmax);
                 Defilementmarches(Marches,-bonhomme.vitesse(),score,sabre);
-                Defilementmarches(Marches,-bonhomme.vitesse(),sabre);
             }
             else{
                 bonhomme.bougey();

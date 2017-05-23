@@ -39,5 +39,7 @@ public:
     IntPoint2 dim(); //Renvoie (width,height)
     void defile(float vy,float & score); //Déplace la marche de un cran vers le bas
     marche initMarches(IntPoint2 dimens);
+    void deplaceX();
+    void changedirection();
 
 };

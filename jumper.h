@@ -1,3 +1,4 @@
+#pragma once
 #ifndef JUMPER_H
 #define JUMPER_H
 #include <Imagine/Images.h>
@@ -11,8 +12,6 @@ using namespace Imagine;
 using namespace std;
 const float G=17;
 const int hauteurmax=200;
-const int VX=30;
-const int VY=70;
 
 
 const int taille_jumper=10;
@@ -40,7 +39,7 @@ public :
     NativeBitmap load();
     void affiche(NativeBitmap r2d2);
 
-    bool rebond(const std :: vector<marche> &Marches1); //verifie si le sauteur va rencontrer une marche et change sa vitesse verticale
+    bool rebond(const std :: vector<marche> &Marches); //verifie si le sauteur va rencontrer une marche et change sa vitesse verticale
     void affiche();
     void efface();
     bool hautducadre();
