@@ -97,7 +97,6 @@ int main(){
         GraphismeFond();
         Affichemarches(Marches);
         bonhomme.efface();
-        noRefreshEnd();
         bonhomme.accelere();
         bonhomme.bougex();
         if(bonhomme.ascention()){
@@ -117,7 +116,7 @@ int main(){
         score=bonhomme.getScore();
         drawString(0,40,"Score : "+to_string(score),YELLOW,40);
         noRefreshEnd();
-        milliSleep(10);
+        milliSleep(1);
     }
     return 0;
 }

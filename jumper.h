@@ -37,7 +37,8 @@ public :
     bool pasperdu();
 
     bool rebond(const std :: vector<marche> &Marches1); //verifie si le sauteur va rencontrer une marche et change sa vitesse verticale
-    void affiche() const;
+    void affiche();
+
     void efface();
     bool hautducadre();
     bool ascention();

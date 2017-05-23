@@ -36,6 +36,11 @@ void jumper::bougex(){// bouge horizontalement
         vx=0;
     }
     x+=int(vx*dt);
+    if(x<=0){
+        x=width_window+x;
+
+    }
+    x=x%width_window;
 }
 void jumper::bougey(){
     y=y+vy*dt;
