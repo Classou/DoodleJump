@@ -14,6 +14,7 @@ const int hauteurmax=200;
 const int VX=30;
 const int VY=70;
 
+
 const int taille_jumper=10;
 class jumper{
     int x; //position du sauteur
@@ -35,10 +36,12 @@ public :
     void bougex();
     void bougey();
     bool pasperdu();
+    bool test_rebond(std :: vector<marche> Marches);/// verifie si le sauteur va rencontrer une marche et change sa vitesse verticale
+    NativeBitmap load();
+    void affiche(NativeBitmap r2d2);
 
     bool rebond(const std :: vector<marche> &Marches1); //verifie si le sauteur va rencontrer une marche et change sa vitesse verticale
     void affiche();
-
     void efface();
     bool hautducadre();
     bool ascention();

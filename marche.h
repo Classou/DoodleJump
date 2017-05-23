@@ -9,6 +9,8 @@ using namespace Imagine;
 #include <iostream>
 #include <cassert>
 using namespace std;
+const int VX=30;
+const int VY=60;
 
 
 //Paramètres initiaux pour les marches, et taille de la fenêtre
@@ -25,13 +27,17 @@ class marche{
     Color C;   //Couleur
     int w;     //Largeur
     int h;     //Hauteur
+    bool mobile;
+    int Vx;
 public:
-    marche(int width,int height,Color col,int y); //Génère une marche en bas de l'image, avec position horizontale aléatoire
+    marche(int width, int height, Color col, int y, bool mobi=false); //Génère une marche en bas de l'image, avec position horizontale aléatoire
     marche(); //Constructeur vide pour pouvoir générer un tableau
-    void affiche(); //Affiche un marche
+    NativeBitmap load(); //Charge l'image
+    void affiche(NativeBitmap sabre); //Affiche un marche
     void efface(); //Efface la marche
     IntPoint2 posCoin(); //Renvoie la position du coin en haut à gauche
     IntPoint2 dim(); //Renvoie (width,height)
     void defile(float vy,float & score); //Déplace la marche de un cran vers le bas
-    marche initMarches();
+    marche initMarches(IntPoint2 dimens);
+
 };
