@@ -21,21 +21,27 @@ void GraphismeFond(){
 }
 
 
-void Affichemarches(std::vector<marche> & Marches){
+void Affichemarches(std::vector<marche> & Marches, NativeBitmap sabre){
     for (int i=0;i<Marches.size();i++){
-        Marches[i].affiche();
+        Marches[i].affiche(sabre);
     }
 }
-std :: vector<marche> init_marches(){
+std :: vector<marche> init_marches(IntPoint2 dimens){
      std :: vector<marche> Marches;
      for (int i=0;i<10;i++){
-         marche newM=marche(width_plat,height_plat,RED,int(height_window*i/10));
+         marche newM=marche(dimens.x(),dimens.y(),RED,int(height_window*i/10),true);
          Marches.push_back(newM);
      }
      return Marches;
 }
+void bougemarches(vector<marche> &marches){
+    for(int i=0;i<marches.size();i++){
+        marches[i].changedirection();
+        marches[i].deplaceX();
+    }
+}
 
-void Defilementmarches(std::vector<marche> & Marches, float vy){
+void Defilementmarches(std::vector<marche> & Marches, float vy, NativeBitmap sabre){
 
     //Gère un vecteur de marches, qui en entrée n'est pas vide
     if(((Marches[0]).posCoin()).y()*5>(rand()%300+5)* height_plat ){
@@ -46,7 +52,7 @@ void Defilementmarches(std::vector<marche> & Marches, float vy){
     for (int i=0;i<Marches.size()-1;i++){
         Marches[i].efface();
         Marches[i].defile(vy);
-        Marches[i].affiche();
+        Marches[i].affiche(sabre);
 
     }
     if(Marches.back().posCoin().y()+height_plat>=height_window){
@@ -56,9 +62,10 @@ void Defilementmarches(std::vector<marche> & Marches, float vy){
     else{
         Marches.back().efface();
         Marches.back().defile(vy);
-        Marches.back().affiche();
+        Marches.back().affiche(sabre);
     }
 }
+
 
 
 //======================================
@@ -71,8 +78,12 @@ int main(){
 
     int score;
 
-    std :: vector<marche> Marches=init_marches();
+    marche image_marche;
+    std :: vector<marche> Marches=init_marches(image_marche.dim());
     bool pas_perdu=true;
+
+    NativeBitmap r2d2=bonhomme.load();
+    NativeBitmap sabre=image_marche.load();
 
 
     while(pas_perdu){
@@ -93,16 +104,18 @@ int main(){
 
 
 ////////////////////////////        version semi finale (wtf "semi finale"???) du main
+
         noRefreshBegin();
         GraphismeFond();
-        Affichemarches(Marches);
+        bougemarches(Marches);
+        Affichemarches(Marches,sabre);
         bonhomme.efface();
         bonhomme.accelere();
         bonhomme.bougex();
         if(bonhomme.ascention()){
             if(bonhomme.hautducadre()){
                 bonhomme.putposverti(hauteurmax);
-                Defilementmarches(Marches,-bonhomme.vitesse());
+                Defilementmarches(Marches,-bonhomme.vitesse(),sabre);
             }
             else{
                 bonhomme.bougey();
@@ -112,7 +125,7 @@ int main(){
             if(bonhomme.rebond(Marches))
                 bonhomme.bougey();
         }
-        bonhomme.affiche();
+        bonhomme.affiche(r2d2);
         score=bonhomme.getScore();
         drawString(0,40,"Score : "+to_string(score),YELLOW,40);
         noRefreshEnd();

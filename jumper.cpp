@@ -9,6 +9,7 @@ using namespace std;
 
 
 //**************************************
+
 int Clavier() {
     Event e;
     do {
@@ -17,7 +18,9 @@ int Clavier() {
             return e.key;
     } while (e.type!=EVT_NONE);
     return 0;
+
 }
+
 //======================================
 
 float jumper::donnevy(){
@@ -74,14 +77,18 @@ void jumper::putposverti(int posy){
     y=posy;
 }
 
-void jumper::affiche(){
-//    fillRect(x,y,10,10,BLUE);
+NativeBitmap jumper::load(){
     byte* rgb;
-    loadColorImage(srcPath("Yoda.png"),rgb,w,h);
-    NativeBitmap yoda(w,h);
-    yoda.setColorImage(0,0,rgb,w,h);
-    putNativeBitmap(x-w/2,y-h,yoda);
+    loadColorImage(srcPath("r2d2.png"),rgb,w,h);
+    NativeBitmap r2d2(w,h);
+    r2d2.setColorImage(0,0,rgb,w,h);
+    return r2d2;
 }
+
+void jumper::affiche(NativeBitmap r2d2){
+    putNativeBitmap(x-w/2,y-h,r2d2);
+}
+
 void jumper::efface(){
     fillRect(x-w/2,y-h,w,h,BLACK);
 }
