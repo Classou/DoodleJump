@@ -113,7 +113,7 @@ bool jumper::rebond(const std :: vector<marche> &Marches){
         x_D=x_C+newmarch.dim().x();
         y_D=y_C+newmarch.dim().y();
         x_A=x;
-        y_A=y+taille_jumper;
+        y_A=y+jumper_width;
         x_B=x+vx*dt;
         y_B=y-vy*dt;
 
@@ -124,7 +124,7 @@ bool jumper::rebond(const std :: vector<marche> &Marches){
                 //cout<<"plat"<<x_plateforme<<endl;
                 //cout<<"jumper"<<x<<endl;
                 x=x_M;
-                y=y_C-taille_jumper;
+                y=y_C-jumper_heigth;
                 vy=-VY;
                 cout<<"true"<<endl;
         }

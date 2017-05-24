@@ -8,7 +8,7 @@ marche::marche(int width, int height, Color col, int y, bool mobi){
     pos.y()=y;
     mobile=mobi;
     if(mobi==true){
-        Vx=rand()%VX-(VX/2);
+        Vx=rand()%VXmarche-(VXmarche/2);
     }
     else Vx=0;
 }

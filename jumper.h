@@ -9,13 +9,14 @@ using namespace Imagine;
 #include <cassert>
 #include"marche.h"
 using namespace std;
-const float G=17;
+const float G=10;
 const int hauteurmax=200;
 const int VX=30;
 const int VY=70;
 
 
-const int taille_jumper=10;
+const int jumper_width=10;
+const int jumper_heigth=10;
 class jumper{
     int x; //position du sauteur
     int y; //altitude du sauteur par rapport au milieu de l écran
