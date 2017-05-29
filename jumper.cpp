@@ -82,6 +82,8 @@ NativeBitmap jumper::load(){
     byte* rgb;
     loadColorImage(srcPath("r2d2.png"),rgb,w,h);
     NativeBitmap r2d2(w,h);
+    cout<<"w : "<<w<<endl;
+    cout<<"h : "<<h<<endl;
     r2d2.setColorImage(0,0,rgb,w,h);
     return r2d2;
 }
@@ -99,6 +101,8 @@ bool jumper::rebond(const std :: vector<marche> &Marches){
     int x_D;
     int y_D;
     int x_A;
+    int x_A2;
+    int x_M2;
     int y_A;
     int x_B;
     int y_B;
@@ -113,13 +117,16 @@ bool jumper::rebond(const std :: vector<marche> &Marches){
         x_D=x_C+newmarch.dim().x();
         y_D=y_C+newmarch.dim().y();
         x_A=x;
-        y_A=y+jumper_width;
+        x_A2=x+jumper_width;
+        y_A=y+jumper_heigth;
         x_B=x+vx*dt;
         y_B=y-vy*dt;
 
         float t=(y_C-y_A)/(y_B-y_A);
         int x_M=(x_B-x_A)*t+x_A;
-        if(y_B<y_C && y_A>y_C && x_C<x_M && x_M<x_D){
+        int x_M2=(x_B-x_A2)*t+x_A2;
+
+        if((y_B<y_C && y_A>y_C && x_C<x_M && x_M<x_D)||(y_B<y_C && y_A>y_C && x_C<x_M2 && x_M2<x_D)){
                 //proche=true;
                 //cout<<"plat"<<x_plateforme<<endl;
                 //cout<<"jumper"<<x<<endl;
