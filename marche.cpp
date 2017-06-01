@@ -13,7 +13,7 @@ marche::marche(int width, int height, Color col, int y, bool mobi){
     else Vx=0;
 }
 
-//Cobstructeur vide pour les tableaux
+//Constructeur vide pour les tableaux
 marche::marche(){
 }
 
@@ -34,6 +34,8 @@ NativeBitmap marche::load(){
     loadColorImage(srcPath("Sabre_Laser.png"),rgb,w,h);
     NativeBitmap sabre(w,h);
     sabre.setColorImage(0,0,rgb,w,h);
+    cout<<w<<endl;
+    cout<<h<<endl;
     return sabre;
 }
 

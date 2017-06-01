@@ -14,10 +14,11 @@ void GraphismeFond(){
     //Image de fond Star Wars
     int w,h;
     byte* rgb;
-    loadColorImage(srcPath("Star_Wars.png"),rgb,w,h);
+    loadColorImage(srcPath("sabre.png"),rgb,w,h);
     NativeBitmap texte(w,h);
     texte.setColorImage(0,0,rgb,w,h);
     putNativeBitmap(0,height_window/5,texte);
+
 }
 
 
@@ -108,6 +109,8 @@ int main(){
 
         noRefreshBegin();
         GraphismeFond();
+        putNativeBitmap(0,0,sabre);
+        putNativeBitmap(0,0,sabre);
         bougemarches(Marches);
         Affichemarches(Marches,sabre);
         bonhomme.efface();
