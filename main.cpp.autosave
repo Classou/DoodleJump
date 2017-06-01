@@ -152,6 +152,7 @@ int main(){
 
     drawString(20,200,"R2D2 died",YELLOW,30);
     drawString(20,500,"You climbed up to : "+to_string(int(score))+" meters",YELLOW,20);
+    drawString()
     click();
     return 0;
 }
