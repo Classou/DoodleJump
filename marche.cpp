@@ -38,9 +38,6 @@ NativeBitmap marche::load(){
 }
 
 void marche::affiche(NativeBitmap sabre){
-//    fillRect(pos.x()+height_plat/2,pos.y(),w-height_plat,h+1,C);
-//    fillCircle(pos.x()+height_plat/2,pos.y()+height_plat/2,height_plat/2,C);
-//    fillCircle(pos.x()+width_plat-height_plat/2,pos.y()+height_plat/2,height_plat/2,C);
     putNativeBitmap(pos.x(),pos.y(),sabre);
 }
 
