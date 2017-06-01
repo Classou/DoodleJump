@@ -18,7 +18,8 @@ const int width_window=400;
 const int height_window=800;
 const float dt=0.1;
 const Color col=RED;
-const int VXmarche=10;
+const int VXmarche=30;
+
 
 
 class marche{

@@ -9,6 +9,8 @@ marche::marche(int width, int height, Color col, int y, bool mobi){
     mobile=mobi;
     if(mobi==true){
         Vx=rand()%VXmarche-(VXmarche/2);
+        cout<<Vx<<endl;
+
     }
     else Vx=0;
 }
