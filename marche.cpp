@@ -31,19 +31,16 @@ IntPoint2 marche::dim(){
 }
 
 //Affichage de la marche
-NativeBitmap marche::load(){
-    byte* rgb;
-    loadColorImage(srcPath("Sabre_Laser.png"),rgb,w,h);
-    NativeBitmap sabre(w,h);
-    sabre.setColorImage(0,0,rgb,w,h);
-    cout<<w<<endl;
-    cout<<h<<endl;
+byte* marche::load(){
+    byte *sabre;
+    loadAlphaColorImage(srcPath("Sabre_Laser.png"),sabre,w,h); // Load PNG Image
     return sabre;
 }
 
-void marche::affiche(NativeBitmap sabre){
-    putNativeBitmap(pos.x(),pos.y(),sabre);
+void marche::affiche(byte* sabre){
+    putAlphaColorImage(pos.x(),pos.y(),sabre,w,h);
 }
+
 
 //Effacement de la marche
 void marche::efface(){
@@ -69,5 +66,3 @@ void marche::changedirection(){
         Vx=-Vx;
     }
 }
-
-

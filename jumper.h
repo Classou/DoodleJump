@@ -39,8 +39,8 @@ public :
     void bougey();
     bool pasperdu();
     bool test_rebond(std :: vector<marche> Marches);/// verifie si le sauteur va rencontrer une marche et change sa vitesse verticale
-    NativeBitmap load();
-    void affiche(NativeBitmap r2d2);
+    byte* load();
+    void affiche(byte* r2d2);
 
     bool rebond(const std :: vector<marche> &Marches); //verifie si le sauteur va rencontrer une marche et change sa vitesse verticale
     void affiche();

@@ -7,27 +7,19 @@ using namespace std;
 #include<vector>
 #include<stdlib.h>
 
-
-NativeBitmap loadFond(){
-    int wFond, hFond;
-    byte* rgb;
-    loadColorImage(srcPath("immeubles.jpg"),rgb,wFond,hFond);
-    NativeBitmap fond(wFond,hFond);
-    fond.setColorImage(0,0,rgb,wFond,hFond);
+byte* loadFond(int&w, int&h){
+    byte *fond;
+    loadAlphaColorImage(srcPath("immeubles.jpg"),fond,w,h); // Load PNG Image
     return fond;
 }
 
-void GraphismeFond(NativeBitmap fond){
-    //Couleur de fond
-    fillRect(0,0,width_window,height_window,BLACK);
-
+void GraphismeFond(byte* fond, int w, int h){
     //Image de fond Star Wars
-
-    putNativeBitmap(0,0,fond);
+    putAlphaColorImage(-w/2,0,fond,w,h,false,0.7);
 }
 
 
-void Affichemarches(std::vector<marche> & Marches, NativeBitmap sabre){
+void Affichemarches(std::vector<marche> & Marches, byte* sabre){
     for (int i=0;i<Marches.size();i++){
         Marches[i].affiche(sabre);
     }
@@ -55,7 +47,7 @@ void bougemarches(vector<marche> & marches){
     }
 }
 
-void Defilementmarches(std::vector<marche> & Marches, float vy,float & score, NativeBitmap sabre){
+void Defilementmarches(std::vector<marche> & Marches, float vy,float & score, byte* sabre){
     //Gère un vecteur de marches, qui en entrée n'est pas vide
     if(((Marches[0]).posCoin()).y()*5>(rand()%300+5)* height_plat ){
         int k=rand()%2;
@@ -121,15 +113,13 @@ int main(){
     InitRandom();
 
     Window jeu=openWindow(width_window,height_window);
-
-    NativeBitmap fond=loadFond();
-    GraphismeFond(fond);
+    int wFond,hFond;
+    byte* fond=loadFond(wFond,hFond);
+    GraphismeFond(fond,wFond,hFond);
     marche image_marche;
 
-    NativeBitmap r2d2=bonhomme.load();
-    NativeBitmap sabre=image_marche.load();
-
-
+    byte* r2d2=bonhomme.load();
+    byte* sabre=image_marche.load();
     std :: vector<marche> Marches=init_marches(image_marche.dim());
     Affichemarches(Marches,sabre);
 
@@ -139,11 +129,10 @@ int main(){
 
 
         noRefreshBegin();
-        GraphismeFond(fond);
+        GraphismeFond(fond,wFond,hFond);
 
         bougemarches(Marches);
         Affichemarches(Marches,sabre);
-//        bonhomme.efface();
         bonhomme.accelere();
         bonhomme.bougex();
         if(bonhomme.ascention()){
