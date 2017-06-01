@@ -100,6 +100,21 @@ void InitRandom()
 
 //======================================
 int main(){
+    //----------------DEBUT DU JEU--------------------------------
+    Window menu=openWindow(1280,720);
+    int wdebut, hdebut;
+    byte* rgb;
+    loadColorImage(srcPath("debutetoile.jpg"),rgb,wdebut,hdebut);
+    NativeBitmap fonddebut(wdebut,hdebut);
+    fonddebut.setColorImage(0,0,rgb,wdebut,hdebut);
+    putNativeBitmap(0,0,fonddebut);
+    Imagine::drawString(400,200,"Star Wars Jumper",YELLOW,30,true,true,true);
+    drawString(500,330,"************",YELLOW,20);
+    drawString(450,450,"Make R2D2 climb up !",YELLOW,20,false,false,true);
+    drawString(1100,600,"begin : ",YELLOW,20);
+    click();
+    closeWindow(menu);
+    //-----------------JEU-----------------------------------------
     float score=0;
     //initialisation bonhomme
     jumper bonhomme;
@@ -152,10 +167,17 @@ int main(){
 
     }
     closeWindow(jeu);
-    openWindow(width_window,height_window);
 
-    drawString(20,200,"R2D2 died",YELLOW,30);
-    drawString(20,500,"You climbed up to : "+to_string(int(score))+" meters",YELLOW,20);
+    //--------------------------FIN DU JEU-----------------------------------------------
+    openWindow(width_window,height_window);
+    int wFond, hFond;
+    loadColorImage(srcPath("ciel_etoile.jpg"),rgb,wFond,hFond);
+    NativeBitmap fondfin(wFond,hFond);
+    fondfin.setColorImage(0,0,rgb,wFond,hFond);
+    putNativeBitmap(0,0,fondfin);
+    Imagine::drawString(20,200,"R2D2 died",YELLOW,30,true,true,true);
+    drawString(20,350,"You climbed up to : ",YELLOW,20);
+    drawString(20,500,to_string(int(score))+" meters",YELLOW,20);
     click();
     return 0;
 }
