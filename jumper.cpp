@@ -10,13 +10,60 @@ using namespace std;
 
 //**************************************
 
-int Clavier() {
+//int Clavier() {
+//    Event e;
+//    do {
+//        getEvent(0,e);
+//        if (e.type==EVT_KEY_ON)
+//            return e.key;
+//    } while (e.type!=EVT_NONE);
+//    return 0;
+
+//}
+bool Touchedansliste(const vector<int> liste,const int k){
+    bool dedans=false;
+    for( int i=0;i<liste.size();i++){
+        if(liste[i]==k){
+            dedans=true;
+        }
+    }
+    return dedans;
+}
+
+void del(vector<int> & liste,int key){
+    for(int i=0;i<liste.size();i++){
+        if(liste[i]==key){
+            liste[i]=liste[liste.size()-1];
+            liste.pop_back();
+        }
+    }
+}
+
+int Clavier(vector<int>&ListeTouchesEnfoncees){
     Event e;
-    do {
-        getEvent(0,e);
-        if (e.type==EVT_KEY_ON)
-            return e.key;
-    } while (e.type!=EVT_NONE);
+    getEvent(0,e);
+    switch(e.type){
+    case EVT_KEY_ON:
+        switch(e.key){
+        case KEY_LEFT: case KEY_RIGHT:
+            if(Touchedansliste(ListeTouchesEnfoncees,e.key)){
+                ListeTouchesEnfoncees.push_back(e.key);
+            }
+        }
+    case EVT_KEY_OFF:
+//        del(ListeTouchesEnfoncees,e.key);
+//        break;
+        return 0;
+    }
+
+    for (int i=0;i<ListeTouchesEnfoncees.size();i++){
+        if(ListeTouchesEnfoncees[i]==KEY_RIGHT){
+            return VX;
+        }
+        if(ListeTouchesEnfoncees[i]==KEY_LEFT){
+            return -VX;
+        }
+    }
     return 0;
 
 }
@@ -28,16 +75,22 @@ float jumper::donnevy(){
 }
 
 void jumper::bougex(){// bouge horizontalement
-    int k=Clavier();
-    if (k==KEY_LEFT){
-        vx=-VX;
-    }
-    if(k==KEY_RIGHT){
-        vx=VX;
-    }
-    if(k==0){// demander a Monasse comment on fait pour gerer mieux les appuie long pour les touches
-        vx=0;
-    }
+    int k=Clavier(ListeTouchesEnfoncees);
+
+//    if (k==1){
+//        vx=-VX;
+//    }
+//    if(k==2){
+//        vx=VX;
+//    }
+//    if(k==0){// demander a Monasse comment on fait pour gerer mieux les appuie long pour les touches
+//        vx=0;
+//    }
+
+    vx=k;
+
+
+
     x+=int(vx*dt);
     if(x<=0){
         x=width_window+x;
