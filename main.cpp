@@ -7,19 +7,22 @@ using namespace std;
 #include<vector>
 #include<stdlib.h>
 
-void GraphismeFond(){
+NativeBitmap loadFond(){
+    int wFond, hFond;
+    byte* rgb;
+    loadColorImage(srcPath("immeubles.jpg"),rgb,wFond,hFond);
+    NativeBitmap fond(wFond,hFond);
+    fond.setColorImage(0,0,rgb,wFond,hFond);
+    return fond;
+}
+
+void GraphismeFond(NativeBitmap fond){
     //Couleur de fond
     fillRect(0,0,width_window,height_window,BLACK);
 
     //Image de fond Star Wars
-    int w,h;
-    byte* rgb;
-    loadColorImage(srcPath("sabre.png"),rgb,w,h);
-    NativeBitmap texte(w,h);
-    texte.setColorImage(0,0,rgb,w,h);
 
-    putNativeBitmap(0,height_window/5,texte);
-
+    putNativeBitmap(0,0,fond);
 }
 
 
@@ -77,8 +80,9 @@ int main(){
     jumper bonhomme;
 
     Window jeu=openWindow(width_window,height_window);
-    GraphismeFond();
 
+    NativeBitmap fond=loadFond();
+    GraphismeFond(fond);
     marche image_marche;
 
     NativeBitmap r2d2=bonhomme.load();
@@ -109,9 +113,8 @@ int main(){
 ////////////////////////////        version semi finale (wtf "semi finale"???) du main
 
         noRefreshBegin();
-        GraphismeFond();
-        putNativeBitmap(0,0,sabre);
-        putNativeBitmap(0,0,sabre);
+        GraphismeFond(fond);
+
         bougemarches(Marches);
         Affichemarches(Marches,sabre);
         bonhomme.efface();
