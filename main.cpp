@@ -15,7 +15,7 @@ byte* loadFond(int&w, int&h){
 
 void GraphismeFond(byte* fond, int w, int h){
     //Image de fond Star Wars
-    putAlphaColorImage(-w/4,0,fond,w,h,false,0.7);
+    putAlphaColorImage(-w/4,0,fond,w,h,false,0.8);
 }
 
 

@@ -21,13 +21,12 @@ using namespace std;
 
 //}
 bool Touchedansliste(const vector<int> liste,const int k){
-    bool dedans=false;
     for( int i=0;i<liste.size();i++){
         if(liste[i]==k){
-            dedans=true;
+            return true;
         }
     }
-    return dedans;
+    return false;
 }
 
 void del(vector<int> & liste,int key){
@@ -39,31 +38,46 @@ void del(vector<int> & liste,int key){
     }
 }
 
-int Clavier(vector<int>&ListeTouchesEnfoncees){
+int Clavier(vector<int> & ListeTouchesEnfoncees){
     Event e;
     getEvent(0,e);
     switch(e.type){
-    case EVT_KEY_ON:
+    case EVT_KEY_ON:{
         switch(e.key){
-        case KEY_LEFT: case KEY_RIGHT:
-            if(Touchedansliste(ListeTouchesEnfoncees,e.key)){
+        case KEY_LEFT: case KEY_RIGHT:{
+            if(!ListeTouchesEnfoncees.empty()){
+                if(ListeTouchesEnfoncees.front()==KEY_RIGHT){
+                    return VX;
+                }
+                if(ListeTouchesEnfoncees.front()==KEY_LEFT){
+                    return -VX;
+                }
+            std::cout<< e.key<<std::endl;
+            std::cout<< ListeTouchesEnfoncees.size()<<std::endl;
+            }
+            if(!Touchedansliste(ListeTouchesEnfoncees,e.key)){
                 ListeTouchesEnfoncees.push_back(e.key);
+                std::cout<< ListeTouchesEnfoncees.size()<<std::endl;
+            }
             }
         }
-    case EVT_KEY_OFF:
-//        del(ListeTouchesEnfoncees,e.key);
-//        break;
+    }
+        break;
+    case EVT_KEY_OFF:{
+        del(ListeTouchesEnfoncees,e.key);
+        std::cout<< ListeTouchesEnfoncees.size()<<std::endl;
+        break;
         return 0;
     }
-
-    for (int i=0;i<ListeTouchesEnfoncees.size();i++){
-        if(ListeTouchesEnfoncees[i]==KEY_RIGHT){
-            return VX;
-        }
-        if(ListeTouchesEnfoncees[i]==KEY_LEFT){
-            return -VX;
-        }
     }
+//    for (int i=0;i<ListeTouchesEnfoncees.size();i++){
+//        if(ListeTouchesEnfoncees[i]==KEY_RIGHT){
+//            return VX;
+//        }
+//        if(ListeTouchesEnfoncees[i]==KEY_LEFT){
+//            return -VX;
+//        }
+//    }
     return 0;
 
 }
@@ -76,17 +90,16 @@ float jumper::donnevy(){
 
 void jumper::bougex(){// bouge horizontalement
     int k=Clavier(ListeTouchesEnfoncees);
-
-//    if (k==1){
+//    int k=Clavier();
+//    if (k==KEY_LEFT){
 //        vx=-VX;
 //    }
-//    if(k==2){
+//    if(k==KEY_RIGHT){
 //        vx=VX;
 //    }
 //    if(k==0){// demander a Monasse comment on fait pour gerer mieux les appuie long pour les touches
 //        vx=0;
 //    }
-
     vx=k;
 
 
@@ -137,7 +150,7 @@ byte* jumper::load(){
 }
 
 void jumper::affiche(byte* r2d2){
-    putAlphaColorImage(x,y,r2d2,w,h);
+    putAlphaColorImage(x-w/2,y-h,r2d2,w,h);
 }
 
 void jumper::efface(){
