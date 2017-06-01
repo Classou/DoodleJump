@@ -1,5 +1,8 @@
 #include "marche.h"
 
+
+
+
 marche::marche(int width, int height, Color col, int y, bool mobi){
     w=width;
     h=height;
@@ -7,10 +10,9 @@ marche::marche(int width, int height, Color col, int y, bool mobi){
     pos.x()=rand()%(width_window-width);
     pos.y()=y;
     mobile=mobi;
-    if(mobi==true){
-        Vx=rand()%VXmarche-(VXmarche/2);
+    if(mobile==true){
+        Vx=(rand()%VXmarche)-(VXmarche/2);
     }
-    else Vx=0;
 }
 
 //Constructeur vide pour les tableaux

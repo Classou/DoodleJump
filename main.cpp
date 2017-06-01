@@ -26,13 +26,21 @@ void Affichemarches(std::vector<marche> & Marches, byte* sabre){
 }
 std :: vector<marche> init_marches(IntPoint2 dimens){
      std :: vector<marche> Marches;
+     int k;
      for (int i=0;i<10;i++){
-         marche newM=marche(dimens.x(),dimens.y(),RED,int(height_window*i/10),true);
+         k=rand()%2;
+         marche newM;
+         if(k==0){
+             newM=marche(dimens.x(),dimens.y(),RED,int(height_window*i/10),true);
+         }
+         else{
+             newM=marche(dimens.x(),dimens.y(),RED,int(height_window*i/10),false);
+         }
          Marches.push_back(newM);
      }
      return Marches;
 }
-void bougemarches(vector<marche> &marches){
+void bougemarches(vector<marche> & marches){
     for(int i=0;i<marches.size();i++){
         marches[i].changedirection();
         marches[i].deplaceX();
@@ -42,35 +50,67 @@ void bougemarches(vector<marche> &marches){
 void Defilementmarches(std::vector<marche> & Marches, float vy,float & score, byte* sabre){
     //Gère un vecteur de marches, qui en entrée n'est pas vide
     if(((Marches[0]).posCoin()).y()*5>(rand()%300+5)* height_plat ){
-        marche a(width_plat,height_plat,col,0);
+        int k=rand()%2;
+        bool bouge=false;
+        if(k==1){
+            bouge=true;
+        }
+        marche a(width_plat,height_plat,RED,0,bouge);
+
+
         Marches.insert(Marches.begin(),a);
     }
 
     for (int i=0;i<Marches.size()-1;i++){
-        Marches[i].efface();
+//        Marches[i].efface();
         Marches[i].defile(vy,score);
-        Marches[i].affiche(sabre);
+//        Marches[i].changedirection();
+//        Marches[i].deplaceX();
+//        Marches[i].affiche(sabre);
 
 
     }
     if(Marches.back().posCoin().y()+height_plat>=height_window){
-        Marches.back().efface();
+//        Marches.back().efface();
         Marches.pop_back();
     }
     else{
-        Marches.back().efface();
+//        Marches.back().efface();
         Marches.back().defile(vy,score);
-        Marches.back().affiche(sabre);
+//        Marches.back().changedirection();
+//        Marches.back().deplaceX();
+//        Marches.back().affiche(sabre);
     }
+}
+
+void InitRandom()
+{
+    srand((unsigned int)time(0));
 }
 
 
 
 //======================================
 int main(){
+    //----------------DEBUT DU JEU--------------------------------
+    Window menu=openWindow(1280,720);
+    int wdebut, hdebut;
+    byte* rgb;
+    loadColorImage(srcPath("debutetoile.jpg"),rgb,wdebut,hdebut);
+    NativeBitmap fonddebut(wdebut,hdebut);
+    fonddebut.setColorImage(0,0,rgb,wdebut,hdebut);
+    putNativeBitmap(0,0,fonddebut);
+    Imagine::drawString(400,200,"Star Wars Jumper",YELLOW,30,true,true,true);
+    drawString(500,330,"************",YELLOW,20);
+    drawString(450,450,"Make R2D2 climb up !",YELLOW,20,false,false,true);
+    drawString(1100,600,"begin : ",YELLOW,20);
+    click();
+    closeWindow(menu);
+    //-----------------JEU-----------------------------------------
     float score=0;
     //initialisation bonhomme
     jumper bonhomme;
+    InitRandom();
 
     Window jeu=openWindow(width_window,height_window);
     int wFond,hFond;
@@ -82,28 +122,11 @@ int main(){
     byte* sabre=image_marche.load();
     std :: vector<marche> Marches=init_marches(image_marche.dim());
     Affichemarches(Marches,sabre);
-    bool pas_perdu=true;
 
 
 
     while(bonhomme.pasperdu()){
 
-
-
-        // Gestion du Jumper
-//        bonhomme.accelere();
-
-
-//        bonhomme.efface();
-//        bonhomme.bougey();
-//        bonhomme.bougex();
-//        bonhomme.affiche();
-
-//        bonhomme.test_rebond(Marches);
-//        milliSleep(10);
-
-
-////////////////////////////        version semi finale (wtf "semi finale"???) du main
 
         noRefreshBegin();
         GraphismeFond(fond,wFond,hFond);
@@ -133,9 +156,17 @@ int main(){
 
     }
     closeWindow(jeu);
-    openWindow(width_window,height_window);
 
-    drawString(20,200,"GAME OVER, score :"+to_string(int(score)),YELLOW,30);
+    //--------------------------FIN DU JEU-----------------------------------------------
+    openWindow(width_window,height_window);
+    int wFond, hFond;
+    loadColorImage(srcPath("ciel_etoile.jpg"),rgb,wFond,hFond);
+    NativeBitmap fondfin(wFond,hFond);
+    fondfin.setColorImage(0,0,rgb,wFond,hFond);
+    putNativeBitmap(0,0,fondfin);
+    Imagine::drawString(20,200,"R2D2 died",YELLOW,30,true,true,true);
+    drawString(20,350,"You climbed up to : ",YELLOW,20);
+    drawString(20,500,to_string(int(score))+" meters",YELLOW,20);
     click();
     return 0;
 }

@@ -67,7 +67,6 @@ bool jumper::pasperdu(){
         return true;
     if(y>height_window)
         return false;
-    cout<<y<<endl;
 }
 
 float jumper:: vitesse(){
@@ -129,7 +128,6 @@ bool jumper::rebond(const std :: vector<marche> &Marches){
                 x=x_M;
                 y=y_C-jumper_heigth;
                 vy=-VY;
-                cout<<"true"<<endl;
         }
     }
 

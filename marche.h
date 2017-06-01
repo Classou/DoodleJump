@@ -18,7 +18,8 @@ const int width_window=400;
 const int height_window=800;
 const float dt=0.1;
 const Color col=RED;
-const int VXmarche=10;
+const int VXmarche=30;
+
 
 
 class marche{
@@ -29,7 +30,7 @@ class marche{
     bool mobile;
     int Vx;
 public:
-    marche(int width, int height, Color col, int y, bool mobi=false); //Génère une marche en bas de l'image, avec position horizontale aléatoire
+    marche(int width, int height, Color col, int y, bool mobi); //Génère une marche en bas de l'image, avec position horizontale aléatoire
     marche(); //Constructeur vide pour pouvoir générer un tableau
     byte* load();
     void affiche(byte* sabre);
