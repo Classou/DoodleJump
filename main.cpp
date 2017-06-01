@@ -15,7 +15,7 @@ byte* loadFond(int&w, int&h){
 
 void GraphismeFond(byte* fond, int w, int h){
     //Image de fond Star Wars
-    putAlphaColorImage(-w/2,0,fond,w,h,false,0.7);
+    putAlphaColorImage(-w/4,0,fond,w,h,false,0.7);
 }
 
 
@@ -95,11 +95,9 @@ int main(){
     //----------------DEBUT DU JEU--------------------------------
     Window menu=openWindow(1280,720);
     int wdebut, hdebut;
-    byte* rgb;
-    loadColorImage(srcPath("debutetoile.jpg"),rgb,wdebut,hdebut);
-    NativeBitmap fonddebut(wdebut,hdebut);
-    fonddebut.setColorImage(0,0,rgb,wdebut,hdebut);
-    putNativeBitmap(0,0,fonddebut);
+    byte* fonddebut;
+    loadColorImage(srcPath("debutetoile.jpg"),fonddebut,wdebut,hdebut);
+    putColorImage(0,0,fonddebut,wdebut,hdebut);
     Imagine::drawString(400,200,"Star Wars Jumper",YELLOW,30,true,true,true);
     drawString(500,330,"************",YELLOW,20);
     drawString(450,450,"Make R2D2 climb up !",YELLOW,20,false,false,true);
@@ -120,6 +118,7 @@ int main(){
 
     byte* r2d2=bonhomme.load();
     byte* sabre=image_marche.load();
+
     std :: vector<marche> Marches=init_marches(image_marche.dim());
     Affichemarches(Marches,sabre);
 
@@ -159,11 +158,9 @@ int main(){
 
     //--------------------------FIN DU JEU-----------------------------------------------
     openWindow(width_window,height_window);
-    int wFond, hFond;
-    loadColorImage(srcPath("ciel_etoile.jpg"),rgb,wFond,hFond);
-    NativeBitmap fondfin(wFond,hFond);
-    fondfin.setColorImage(0,0,rgb,wFond,hFond);
-    putNativeBitmap(0,0,fondfin);
+    byte* fondfin;
+    loadColorImage(srcPath("ciel_etoile.jpg"),fondfin,wFond,hFond);
+    putColorImage(0,0,fondfin,wFond,hFond);
     Imagine::drawString(20,200,"R2D2 died",YELLOW,30,true,true,true);
     drawString(20,350,"You climbed up to : ",YELLOW,20);
     drawString(20,500,to_string(int(score))+" meters",YELLOW,20);
