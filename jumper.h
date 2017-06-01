@@ -19,6 +19,7 @@ const int VY=70;
 const int jumper_width=0;
 const int jumper_heigth=0;
 class jumper{
+    vector<int>ListeTouchesEnfoncees;
     int x; //position du sauteur
     int y; //altitude du sauteur par rapport au milieu de l écran
     float vy; //la vitesse verticale du sauteur
