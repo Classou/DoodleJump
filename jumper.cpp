@@ -67,7 +67,6 @@ bool jumper::pasperdu(){
         return true;
     if(y>height_window)
         return false;
-    cout<<y<<endl;
 }
 
 float jumper:: vitesse(){
@@ -82,8 +81,6 @@ NativeBitmap jumper::load(){
     byte* rgb;
     loadColorImage(srcPath("r2d2.png"),rgb,w,h);
     NativeBitmap r2d2(w,h);
-    cout<<"w : "<<w<<endl;
-    cout<<"h : "<<h<<endl;
     r2d2.setColorImage(0,0,rgb,w,h);
     return r2d2;
 }
@@ -133,7 +130,6 @@ bool jumper::rebond(const std :: vector<marche> &Marches){
                 x=x_M;
                 y=y_C-jumper_heigth;
                 vy=-VY;
-                cout<<"true"<<endl;
         }
     }
 

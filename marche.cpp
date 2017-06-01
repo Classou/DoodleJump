@@ -12,7 +12,6 @@ marche::marche(int width, int height, Color col, int y, bool mobi){
     mobile=mobi;
     if(mobile==true){
         Vx=(rand()%VXmarche)-(VXmarche/2);
-
     }
 }
 

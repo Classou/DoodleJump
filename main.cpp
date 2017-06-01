@@ -58,7 +58,14 @@ void bougemarches(vector<marche> & marches){
 void Defilementmarches(std::vector<marche> & Marches, float vy,float & score, NativeBitmap sabre){
     //Gère un vecteur de marches, qui en entrée n'est pas vide
     if(((Marches[0]).posCoin()).y()*5>(rand()%300+5)* height_plat ){
-        marche a(width_plat,height_plat,col,0,true);
+        int k=rand()%2;
+        bool bouge=false;
+        if(k==1){
+            bouge=true;
+        }
+        marche a(width_plat,height_plat,RED,0,bouge);
+
+
         Marches.insert(Marches.begin(),a);
     }
 
@@ -147,7 +154,8 @@ int main(){
     closeWindow(jeu);
     openWindow(width_window,height_window);
 
-    drawString(20,200,"GAME OVER, score :"+to_string(int(score)),YELLOW,30);
+    drawString(20,200,"R2D2 died",YELLOW,30);
+    drawString(20,500,"You climbed up to : "+to_string(int(score))+" meters",YELLOW,20);
     click();
     return 0;
 }
