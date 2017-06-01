@@ -7,6 +7,7 @@ using namespace std;
 #include<vector>
 #include<stdlib.h>
 
+
 NativeBitmap loadFond(){
     int wFond, hFond;
     byte* rgb;
@@ -33,13 +34,21 @@ void Affichemarches(std::vector<marche> & Marches, NativeBitmap sabre){
 }
 std :: vector<marche> init_marches(IntPoint2 dimens){
      std :: vector<marche> Marches;
+     int k;
      for (int i=0;i<10;i++){
-         marche newM=marche(dimens.x(),dimens.y(),RED,int(height_window*i/10),true);
+         k=rand()%2;
+         marche newM;
+         if(k==0){
+             newM=marche(dimens.x(),dimens.y(),RED,int(height_window*i/10),true);
+         }
+         else{
+             newM=marche(dimens.x(),dimens.y(),RED,int(height_window*i/10),false);
+         }
          Marches.push_back(newM);
      }
      return Marches;
 }
-void bougemarches(vector<marche> &marches){
+void bougemarches(vector<marche> & marches){
     for(int i=0;i<marches.size();i++){
         marches[i].changedirection();
         marches[i].deplaceX();
@@ -49,26 +58,35 @@ void bougemarches(vector<marche> &marches){
 void Defilementmarches(std::vector<marche> & Marches, float vy,float & score, NativeBitmap sabre){
     //Gère un vecteur de marches, qui en entrée n'est pas vide
     if(((Marches[0]).posCoin()).y()*5>(rand()%300+5)* height_plat ){
-        marche a(width_plat,height_plat,col,0);
+        marche a(width_plat,height_plat,col,0,true);
         Marches.insert(Marches.begin(),a);
     }
 
     for (int i=0;i<Marches.size()-1;i++){
-        Marches[i].efface();
+//        Marches[i].efface();
         Marches[i].defile(vy,score);
-        Marches[i].affiche(sabre);
+//        Marches[i].changedirection();
+//        Marches[i].deplaceX();
+//        Marches[i].affiche(sabre);
 
 
     }
     if(Marches.back().posCoin().y()+height_plat>=height_window){
-        Marches.back().efface();
+//        Marches.back().efface();
         Marches.pop_back();
     }
     else{
-        Marches.back().efface();
+//        Marches.back().efface();
         Marches.back().defile(vy,score);
-        Marches.back().affiche(sabre);
+//        Marches.back().changedirection();
+//        Marches.back().deplaceX();
+//        Marches.back().affiche(sabre);
     }
+}
+
+void InitRandom()
+{
+    srand((unsigned int)time(0));
 }
 
 
@@ -78,6 +96,7 @@ int main(){
     float score=0;
     //initialisation bonhomme
     jumper bonhomme;
+    InitRandom();
 
     Window jeu=openWindow(width_window,height_window);
 
@@ -87,37 +106,22 @@ int main(){
 
     NativeBitmap r2d2=bonhomme.load();
     NativeBitmap sabre=image_marche.load();
+
+
     std :: vector<marche> Marches=init_marches(image_marche.dim());
     Affichemarches(Marches,sabre);
-    bool pas_perdu=true;
 
 
 
     while(bonhomme.pasperdu()){
 
 
-
-        // Gestion du Jumper
-//        bonhomme.accelere();
-
-
-//        bonhomme.efface();
-//        bonhomme.bougey();
-//        bonhomme.bougex();
-//        bonhomme.affiche();
-
-//        bonhomme.test_rebond(Marches);
-//        milliSleep(10);
-
-
-////////////////////////////        version semi finale (wtf "semi finale"???) du main
-
         noRefreshBegin();
         GraphismeFond(fond);
 
         bougemarches(Marches);
         Affichemarches(Marches,sabre);
-        bonhomme.efface();
+//        bonhomme.efface();
         bonhomme.accelere();
         bonhomme.bougex();
         if(bonhomme.ascention()){
