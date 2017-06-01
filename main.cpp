@@ -17,6 +17,7 @@ void GraphismeFond(){
     loadColorImage(srcPath("sabre.png"),rgb,w,h);
     NativeBitmap texte(w,h);
     texte.setColorImage(0,0,rgb,w,h);
+
     putNativeBitmap(0,height_window/5,texte);
 
 }
