@@ -78,18 +78,14 @@ void jumper::putposverti(int posy){
     y=posy;
 }
 
-NativeBitmap jumper::load(){
-    byte* rgb;
-    loadColorImage(srcPath("r2d2.png"),rgb,w,h);
-    NativeBitmap r2d2(w,h);
-    cout<<"w : "<<w<<endl;
-    cout<<"h : "<<h<<endl;
-    r2d2.setColorImage(0,0,rgb,w,h);
+byte* jumper::load(){
+    byte *r2d2;
+    loadAlphaColorImage(srcPath("r2d2.png"),r2d2,w,h); // Load PNG Image
     return r2d2;
 }
 
-void jumper::affiche(NativeBitmap r2d2){
-    putNativeBitmap(x-w/2,y-h,r2d2);
+void jumper::affiche(byte* r2d2){
+    putAlphaColorImage(x,y,r2d2,w,h);
 }
 
 void jumper::efface(){
