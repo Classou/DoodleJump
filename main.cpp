@@ -21,6 +21,7 @@ void GraphismeFond(NativeBitmap fond){
     fillRect(0,0,width_window,height_window,BLACK);
 
     //Image de fond Star Wars
+
     putNativeBitmap(0,0,fond);
 }
 
@@ -79,14 +80,17 @@ int main(){
     jumper bonhomme;
 
     Window jeu=openWindow(width_window,height_window);
+
     NativeBitmap fond=loadFond();
     GraphismeFond(fond);
     marche image_marche;
-    std :: vector<marche> Marches=init_marches(image_marche.dim());
-    bool pas_perdu=true;
 
     NativeBitmap r2d2=bonhomme.load();
     NativeBitmap sabre=image_marche.load();
+    std :: vector<marche> Marches=init_marches(image_marche.dim());
+    Affichemarches(Marches,sabre);
+    bool pas_perdu=true;
+
 
 
     while(bonhomme.pasperdu()){
@@ -110,6 +114,7 @@ int main(){
 
         noRefreshBegin();
         GraphismeFond(fond);
+
         bougemarches(Marches);
         Affichemarches(Marches,sabre);
         bonhomme.efface();

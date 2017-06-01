@@ -9,8 +9,6 @@ using namespace Imagine;
 #include <iostream>
 #include <cassert>
 using namespace std;
-const int VX=30;
-const int VY=60;
 
 
 //Paramètres initiaux pour les marches, et taille de la fenêtre
@@ -20,6 +18,7 @@ const int width_window=400;
 const int height_window=800;
 const float dt=0.1;
 const Color col=RED;
+const int VXmarche=10;
 
 
 class marche{
