@@ -45,6 +45,7 @@ int Clavier(vector<int> & ListeTouchesEnfoncees){
     case EVT_KEY_ON:{
         switch(e.key){
         case KEY_LEFT: case KEY_RIGHT:{
+            std::cout<< e.key<<std::endl;
             if(!ListeTouchesEnfoncees.empty()){
                 if(ListeTouchesEnfoncees.front()==KEY_RIGHT){
                     return VX;
@@ -52,7 +53,6 @@ int Clavier(vector<int> & ListeTouchesEnfoncees){
                 if(ListeTouchesEnfoncees.front()==KEY_LEFT){
                     return -VX;
                 }
-            std::cout<< e.key<<std::endl;
             std::cout<< ListeTouchesEnfoncees.size()<<std::endl;
             }
             if(!Touchedansliste(ListeTouchesEnfoncees,e.key)){
@@ -66,7 +66,6 @@ int Clavier(vector<int> & ListeTouchesEnfoncees){
     case EVT_KEY_OFF:{
         del(ListeTouchesEnfoncees,e.key);
         std::cout<< ListeTouchesEnfoncees.size()<<std::endl;
-        break;
         return 0;
     }
     }
@@ -168,7 +167,6 @@ bool jumper::rebond(const std :: vector<marche> &Marches){
     int x_B;
     int y_B;
 
-    bool proche=false;
     int n=Marches.size();
     marche newmarch;
     for (int i=0; i<n;i++){

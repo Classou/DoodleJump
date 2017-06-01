@@ -127,6 +127,7 @@ int main(){
     while(bonhomme.pasperdu()){
 
 
+//        std::cout<<Marches.size()<<std::endl;
         noRefreshBegin();
         GraphismeFond(fond,wFond,hFond);
 
