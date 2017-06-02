@@ -7,6 +7,8 @@ using namespace std;
 #include<vector>
 #include<stdlib.h>
 
+
+//Permet de loader une seule fois l'image, et de l'utiliser ensuite avec la fonction suivante
 byte* loadFond(int&w, int&h){
     byte *fond;
     loadAlphaColorImage(srcPath("immeubles.jpg"),fond,w,h); // Load PNG Image
@@ -18,12 +20,14 @@ void GraphismeFond(byte* fond, int w, int h){
     putAlphaColorImage(-w/4,0,fond,w,h,false,0.8);
 }
 
-
+//Affiche toutes les marches actuelement dans le vecteur Marches
 void Affichemarches(std::vector<marche> & Marches, byte* sabre){
     for (int i=0;i<Marches.size();i++){
         Marches[i].affiche(sabre);
     }
 }
+
+//Initialisation des marches : on tire 10 marches au sort, a des intervalles reguliers
 std :: vector<marche> init_marches(IntPoint2 dimens){
      std :: vector<marche> Marches;
      int k;
@@ -40,10 +44,14 @@ std :: vector<marche> init_marches(IntPoint2 dimens){
      }
      return Marches;
 }
-void bougemarches(vector<marche> & marches){
+
+//Deplace les marches si elles sont animees et gere le changement de sens si la marche arrive en bout de fenetre
+void bougemarches(std::vector<marche> & marches){
     for(int i=0;i<marches.size();i++){
-        marches[i].changedirection();
-        marches[i].deplaceX();
+        if(marches[i].testMobile()){
+            marches[i].changedirection();
+            marches[i].deplaceX();
+        }
     }
 }
 
@@ -62,24 +70,15 @@ void Defilementmarches(std::vector<marche> & Marches, float vy,float & score, by
     }
 
     for (int i=0;i<Marches.size()-1;i++){
-//        Marches[i].efface();
         Marches[i].defile(vy,score);
-//        Marches[i].changedirection();
-//        Marches[i].deplaceX();
-//        Marches[i].affiche(sabre);
 
 
     }
     if(Marches.back().posCoin().y()+height_plat>=height_window){
-//        Marches.back().efface();
         Marches.pop_back();
     }
     else{
-//        Marches.back().efface();
         Marches.back().defile(vy,score);
-//        Marches.back().changedirection();
-//        Marches.back().deplaceX();
-//        Marches.back().affiche(sabre);
     }
 }
 
@@ -129,7 +128,6 @@ int main(){
     while(bonhomme.pasperdu()){
 
 
-//        std::cout<<Marches.size()<<std::endl;
         noRefreshBegin();
         GraphismeFond(fond,wFond,hFond);
 

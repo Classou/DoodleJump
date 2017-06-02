@@ -44,7 +44,6 @@ public :
 
     bool rebond(const std :: vector<marche> &Marches); //verifie si le sauteur va rencontrer une marche et change sa vitesse verticale
     void affiche();
-    void efface();
     bool hautducadre();
     bool ascention();
     float vitesse();///donne la vitesse verticale
