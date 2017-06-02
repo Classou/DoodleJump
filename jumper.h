@@ -10,10 +10,11 @@ using namespace Imagine;
 #include <cassert>
 #include"marche.h"
 using namespace std;
-const float G=10;
+const float G=20;
 const int hauteurmax=200;
 const int VX=30;
-const int VY=70;
+const int VY=100;
+
 
 
 const int jumper_width=0;

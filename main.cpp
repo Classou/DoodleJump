@@ -150,7 +150,7 @@ int main(){
         }
 
         bonhomme.affiche(r2d2);
-        drawString(0,40,"Altitude"+to_string(int(score)),YELLOW,20);
+        drawString(0,40,"Alt."+to_string(int(score)),YELLOW,20);
 
         noRefreshEnd();
         milliSleep(1);
@@ -163,7 +163,7 @@ int main(){
     loadColorImage(srcPath("DoodleFin.png"),fondfin,wFond,hFond);
     openWindow(wFond,hFond);
     putColorImage(0,0,fondfin,wFond,hFond);
-    drawString(150,250,to_string(int(score)),YELLOW,50);
+    drawString(200,330,to_string(int(score)),YELLOW,50);
     click();
     return 0;
 }
