@@ -152,9 +152,7 @@ void jumper::affiche(byte* r2d2){
     putAlphaColorImage(x-w/2,y-h,r2d2,w,h);
 }
 
-void jumper::efface(){
-    fillRect(x-w/2,y-h,w,h,BLACK);
-}
+
 bool jumper::rebond(const std :: vector<marche> &Marches){
     int x_C;
     int y_C;

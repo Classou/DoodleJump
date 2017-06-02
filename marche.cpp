@@ -42,11 +42,6 @@ void marche::affiche(byte* sabre){
 }
 
 
-//Effacement de la marche
-void marche::efface(){
-    fillRect(pos.x()+height_plat/2,pos.y(),w-height_plat,h,BLACK);
-}
-
 //Descente de la marche de 1 pixel
 void marche::defile(float vy, float &score){
     pos.y()+=int (vy*dt);
@@ -65,4 +60,9 @@ void marche::changedirection(){
     if(Vx<0 && pos.x()+int(Vx*dt)<0){
         Vx=-Vx;
     }
+}
+
+//retourne true si la marche est mobile
+bool marche::testMobile(){
+    return mobile;
 }
