@@ -38,26 +38,23 @@ void del(vector<int> & liste,int key){
     }
 }
 
-int Clavier(vector<int> & ListeTouchesEnfoncees){
+void Clavier(vector<int> & ListeTouchesEnfoncees){
     Event e;
     getEvent(0,e);
     switch(e.type){
     case EVT_KEY_ON:{
         switch(e.key){
         case KEY_LEFT: case KEY_RIGHT:{
-            std::cout<< e.key<<std::endl;
             if(!ListeTouchesEnfoncees.empty()){
                 if(ListeTouchesEnfoncees.front()==KEY_RIGHT){
-                    return VX;
+                    return;
                 }
                 if(ListeTouchesEnfoncees.front()==KEY_LEFT){
-                    return -VX;
+                    return;
                 }
-//            std::cout<< ListeTouchesEnfoncees.size()<<std::endl;
             }
             if(!Touchedansliste(ListeTouchesEnfoncees,e.key)){
                 ListeTouchesEnfoncees.push_back(e.key);
-//                std::cout<< ListeTouchesEnfoncees.size()<<std::endl;
             }
             }
         }
@@ -65,19 +62,10 @@ int Clavier(vector<int> & ListeTouchesEnfoncees){
         break;
     case EVT_KEY_OFF:{
         del(ListeTouchesEnfoncees,e.key);
-//        std::cout<< ListeTouchesEnfoncees.size()<<std::endl;
-        return 0;
+        return;
     }
     }
-//    for (int i=0;i<ListeTouchesEnfoncees.size();i++){
-//        if(ListeTouchesEnfoncees[i]==KEY_RIGHT){
-//            return VX;
-//        }
-//        if(ListeTouchesEnfoncees[i]==KEY_LEFT){
-//            return -VX;
-//        }
-//    }
-    return 0;
+    return;
 
 }
 
@@ -88,7 +76,7 @@ float jumper::donnevy(){
 }
 
 void jumper::bougex(){// bouge horizontalement
-    int k=Clavier(ListeTouchesEnfoncees);
+    Clavier(ListeTouchesEnfoncees);
 //    int k=Clavier();
 //    if (k==KEY_LEFT){
 //        vx=-VX;
@@ -99,7 +87,16 @@ void jumper::bougex(){// bouge horizontalement
 //    if(k==0){// demander a Monasse comment on fait pour gerer mieux les appuie long pour les touches
 //        vx=0;
 //    }
-    vx=k;
+    if(!ListeTouchesEnfoncees.empty()){
+        if(ListeTouchesEnfoncees[0]==KEY_RIGHT){
+            vx=VX;
+        }
+        if(ListeTouchesEnfoncees[0]==KEY_LEFT){
+            vx=-VX;
+        }
+    }
+    else
+        vx=0;
 
 
 
