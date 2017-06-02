@@ -16,7 +16,7 @@ const int width_plat=110;
 const int height_plat=15;
 const int width_window=400;
 const int height_window=800;
-const float dt=0.1;
+const float dt=0.15;
 const Color col=RED;
 const int VXmarche=30;
 
