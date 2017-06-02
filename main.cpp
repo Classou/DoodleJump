@@ -93,16 +93,18 @@ void InitRandom()
 //======================================
 int main(){
     //----------------DEBUT DU JEU--------------------------------
-    Window menu=openWindow(1280,720);
     int wdebut, hdebut;
     byte* fonddebut;
-    loadColorImage(srcPath("debutetoile.jpg"),fonddebut,wdebut,hdebut);
+    loadColorImage(srcPath("DebutDoodle.png"),fonddebut,wdebut,hdebut);
+    Window menu=openWindow(wdebut,hdebut);
     putColorImage(0,0,fonddebut,wdebut,hdebut);
-    Imagine::drawString(400,200,"Star Wars Jumper",YELLOW,30,true,true,true);
-    drawString(500,330,"************",YELLOW,20);
-    drawString(450,450,"Make R2D2 climb up !",YELLOW,20,false,false,true);
-    drawString(1100,600,"begin : ",YELLOW,20);
-    click();
+    int x,y;
+    bool start=false;
+    while(!start){
+        getMouse(x,y);
+        if(x>=50 && x<=430 && y>=370 && y<=440)
+            start=true;
+    }
     closeWindow(menu);
     //-----------------JEU-----------------------------------------
     float score=0;
@@ -160,11 +162,9 @@ int main(){
     //--------------------------FIN DU JEU-----------------------------------------------
     openWindow(width_window,height_window);
     byte* fondfin;
-    loadColorImage(srcPath("ciel_etoile.jpg"),fondfin,wFond,hFond);
+    loadColorImage(srcPath("DoodleFin.png"),fondfin,wFond,hFond);
     putColorImage(0,0,fondfin,wFond,hFond);
-    Imagine::drawString(20,200,"R2D2 died",YELLOW,30,true,true,true);
-    drawString(20,350,"You climbed up to : ",YELLOW,20);
-    drawString(20,500,to_string(int(score))+" meters",YELLOW,20);
+    drawString(20,500,to_string(int(score)),YELLOW,50);
     click();
     return 0;
 }
