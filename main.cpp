@@ -160,11 +160,11 @@ int main(){
     closeWindow(jeu);
 
     //--------------------------FIN DU JEU-----------------------------------------------
-    openWindow(width_window,height_window);
     byte* fondfin;
     loadColorImage(srcPath("DoodleFin.png"),fondfin,wFond,hFond);
+    openWindow(wFond,hFond);
     putColorImage(0,0,fondfin,wFond,hFond);
-    drawString(20,500,to_string(int(score)),YELLOW,50);
+    drawString(150,250,to_string(int(score)),YELLOW,50);
     click();
     return 0;
 }
