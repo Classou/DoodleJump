@@ -152,7 +152,8 @@ int main(){
         }
 
         bonhomme.affiche(r2d2);
-        drawString(0,40,"Score : "+to_string(int(score)),YELLOW,40);
+        drawString(0,40,"Altitude"+to_string(int(score)),YELLOW,20);
+
         noRefreshEnd();
         milliSleep(1);
 
