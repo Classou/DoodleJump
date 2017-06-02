@@ -53,11 +53,11 @@ int Clavier(vector<int> & ListeTouchesEnfoncees){
                 if(ListeTouchesEnfoncees.front()==KEY_LEFT){
                     return -VX;
                 }
-            std::cout<< ListeTouchesEnfoncees.size()<<std::endl;
+//            std::cout<< ListeTouchesEnfoncees.size()<<std::endl;
             }
             if(!Touchedansliste(ListeTouchesEnfoncees,e.key)){
                 ListeTouchesEnfoncees.push_back(e.key);
-                std::cout<< ListeTouchesEnfoncees.size()<<std::endl;
+//                std::cout<< ListeTouchesEnfoncees.size()<<std::endl;
             }
             }
         }
@@ -65,7 +65,7 @@ int Clavier(vector<int> & ListeTouchesEnfoncees){
         break;
     case EVT_KEY_OFF:{
         del(ListeTouchesEnfoncees,e.key);
-        std::cout<< ListeTouchesEnfoncees.size()<<std::endl;
+//        std::cout<< ListeTouchesEnfoncees.size()<<std::endl;
         return 0;
     }
     }
