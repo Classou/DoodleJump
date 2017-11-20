@@ -1,8 +1,5 @@
 #include "marche.h"
 
-
-
-
 marche::marche(int width, int height, Color col, int y, bool mobi){
     w=width;
     h=height;
